@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose');
 const app = express();
 const logger = require('./utils/logger')
+const taskRouter = require('./controllers/tasks')
 
 // Middleware
 app.use(express.json())
@@ -18,8 +19,9 @@ mongoose.connect(config.MONGODB_URI)
     })
     .catch((error) => {
         logger.error('error connecting to MongoDB:', error.message)
-      })
+    })
+
+    app.use('/api/tasks', taskRouter)
 
 
-
-      module.exports = app
+ module.exports = app
