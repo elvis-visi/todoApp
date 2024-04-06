@@ -3,7 +3,9 @@ const express = require('express')
 const mongoose = require('mongoose');
 const app = express();
 const logger = require('./utils/logger')
+
 const taskRouter = require('./controllers/tasks')
+const usersRouter = require('./controllers/users')
 
 // Middleware
 app.use(express.json())
@@ -22,6 +24,7 @@ mongoose.connect(config.MONGODB_URI)
     })
 
     app.use('/api/tasks', taskRouter)
+    app.use('/api/users', usersRouter)
 
 
  module.exports = app
