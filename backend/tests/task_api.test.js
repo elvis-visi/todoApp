@@ -62,6 +62,36 @@ test('the first task title is about project proposal', async () => {
     assert(titles.includes('Complete project proposal'))
 })
 
+//verify the number of tasks returned increases
+//and the new task is in the list
+test('a valid task can be added ', async () => {
+
+    //create new task and  
+    const newTask = {
+        title: "Task 3",
+        description: "Added a third task",
+        dueDate: "2023-06-15T00:00:00.000Z",
+        dateAdded: "2024-07-06T11:34:15.807Z",
+        priority: "low",
+        completed: false,
+    }
+   // make post request
+    await api.
+    post('/api/tasks')
+    .send(newTask)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+    //get all the tasks and assert the length of the new updated list
+    const response = await api.get('/api/tasks')
+    assert.strictEqual(response.body.length, initialTasks.length  +1)
+
+      //assert that the new task exists in the list
+    const titles = response.body.map(e => e.title)
+    assert(titles.includes('Task 3'))  
+
+})
+
 
 
   after(async () => {
