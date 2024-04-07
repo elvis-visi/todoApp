@@ -92,6 +92,25 @@ test('a valid task can be added ', async () => {
 
 })
 
+test('task without title is not added', async() => {
+    const newTask = {
+        description: "Added a third task",
+        dueDate: "2023-06-15T00:00:00.000Z",
+        dateAdded: "2024-07-06T11:34:15.807Z",
+        priority: "low",
+        completed: false,
+    }
+
+    await api. 
+    post('/api/tasks')
+    .send(newTask)
+    .expect(400)
+
+    const response = await api.get('/api/tasks')
+    assert.strictEqual(response.body.length, initialTasks.length)
+
+})
+
 
 
   after(async () => {

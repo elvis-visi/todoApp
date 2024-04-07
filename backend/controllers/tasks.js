@@ -13,6 +13,10 @@ taskRouter.get('/',async (request, response) => {
 taskRouter.post('/', async (request,response) => {
     const body = request.body
 
+    if (!body.title) {
+        return response.status(400).json({error: 'title is required'})
+    }
+
     const task =  new Task({
         title: body.title,
         description: body.description,
