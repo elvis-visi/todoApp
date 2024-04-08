@@ -3,16 +3,13 @@ const express = require('express')
 const mongoose = require('mongoose');
 const app = express();
 const logger = require('./utils/logger')
+const middleware = require('./utils/middleware')
 
 const taskRouter = require('./controllers/tasks')
 const usersRouter = require('./controllers/users')
 
-// Middleware
-app.use(express.json())
-
 // MongoDB Connection
 mongoose.set('strictQuery', false)
-
 logger.info('connection to', config.MONGODB_URI)
 
 mongoose.connect(config.MONGODB_URI)
@@ -23,8 +20,17 @@ mongoose.connect(config.MONGODB_URI)
         logger.error('error connecting to MongoDB:', error.message)
     })
 
+    // Middleware
+    app.use(express.json())
+    app.use(middleware.requestLogger)
+
     app.use('/api/tasks', taskRouter)
     app.use('/api/users', usersRouter)
 
+    const unknownEndpoint = (request, response) => {
+        response.status(404).send({ error: 'unknown endpoint' })
+      }
+      
+    app.use(unknownEndpoint)
 
  module.exports = app
