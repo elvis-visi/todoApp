@@ -37,7 +37,7 @@ test('there are two tasks', async () => {
 test('the first task title is about project proposal', async () => {
     //get all tasks -> get method
     const response = await helper.tasksInDb()
-    
+
     const titles = response.map(ele => ele.title)
     //assert 
     assert(titles.includes('Complete project proposal'))
@@ -90,6 +90,26 @@ test('task without title is not added', async() => {
     const response = await helper.tasksInDb()
     assert.strictEqual(response.length, helper.initialTasks.length)
 
+})
+
+test('a specific task can be viewed', async () => {
+  const tasksAtStart = await helper.tasksInDb()
+  const taksToView = tasksAtStart[0]
+
+  const resultTask = await api
+    .get(`/api/tasks/${taksToView.id}`)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  console.log('Expected task:', taksToView)
+  console.log('Actual task:', resultTask.body)
+
+  // Convert dueDate and dateAdded fields to Date objects in the actual task object
+  resultTask.body.dueDate = new Date(resultTask.body.dueDate)
+  resultTask.body.dateAdded = new Date(resultTask.body.dateAdded)
+  console.log('Actual task conversion:', resultTask.body)
+
+  assert.deepStrictEqual(taksToView, resultTask.body)
 })
 
 
