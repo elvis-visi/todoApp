@@ -8,11 +8,11 @@ taskRouter.get('/',async (request, response) => {
     response.json(tasks)
 } )
 
-notesRouter.get('/:id', async (request, response, next) => {
+taskRouter.get('/:id', async (request, response, next) => {
     try {
-      const note = await Note.findById(request.params.id)
-      if (note) {
-        response.json(note)
+      const task = await Task.findById(request.params.id)
+      if (task) {
+        response.json(task)
       } else {
         response.status(404).end()
       }
@@ -21,6 +21,16 @@ notesRouter.get('/:id', async (request, response, next) => {
     }
   })
 
+  
+                 
+taskRouter.delete('/:id', async (request, response, next) => {
+   try{
+    await Task.findByIdAndDelete(request.params.id)
+    response.status(204).end()
+   }catch(error){
+    next(error)
+   }
+})
 
 
 taskRouter.post('/', async (request,response) => {
