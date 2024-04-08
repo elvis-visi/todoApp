@@ -112,6 +112,29 @@ test('a specific task can be viewed', async () => {
   assert.deepStrictEqual(taksToView, resultTask.body)
 })
 
+test('a task can be deleted', async () => {
+  //fetch all tasks
+  const tasksAtStart = await helper.tasksInDb()
+  //task to be deleted
+  const taskToDelete = tasksAtStart[0]
+  //delete -> delete http request
+  await api. 
+          delete(`/api/tasks/${taskToDelete.id}`)
+          .expect(204)
+
+  //current Tasks after deletion
+  const tasksAtEnd = await helper.tasksInDb()
+
+  //assert tasks size 
+  assert.strictEqual(tasksAtEnd.length, tasksAtStart.length - 1);
+
+  //assert the title of deleted task not included
+  const titles = tasksAtEnd.map(ele => ele.title)
+  assert(!titles.includes(taskToDelete.title))
+
+
+})
+
 
 
   after(async () => {
