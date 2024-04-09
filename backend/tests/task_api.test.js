@@ -11,14 +11,16 @@ const api = supertest(app)
 
 
 //we ensure that the database is in the same state before every test is run
-beforeEach(async () => {
+beforeEach(async () =>  {
     await Task.deleteMany({})
-    let taskObject = new Task(helper.initialTasks[0])
-    await taskObject.save()
-    taskObject = new Task(helper.initialTasks[1])
-    await taskObject.save()
+    //array of mongoose documents from the initialTask JS objects
+    const taskObjects = helper.initialTasks. 
+    map(task => new Task(task))
+    //create an array of promises
+    const promiseArray = taskObjects.map(task => task.save())
+    //promises executed in parallel
+   await Promise.all(promiseArray)
 })
-
 
 
 test('tasks are returned as json', async () => {
