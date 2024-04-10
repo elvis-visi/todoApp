@@ -1,6 +1,6 @@
 // import the Task model
 const Task = require('../models/task')
-
+const User = require('../models/user')
 // initialTasks array
 const initialTasks = [
     {
@@ -29,6 +29,11 @@ const tasksInDb = async () => {
     return tasks.map(task => task.toJSON())
 }
 
+const usersInD = async () => {
+    const users = await User.find({})
+    return users.map(user => user.toJSON())
+}
+
 module.exports =  {
-    initialTasks, tasksInDb
+    initialTasks, tasksInDb, usersInD
 }

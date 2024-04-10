@@ -6,6 +6,9 @@ const app = require('../app')
 const assert = require('node:assert');
 const helper = require('./test_helper')
 
+const bcrypt = require('bcrypt')
+const User = require('../models/user')
+
 //allows you to simulate HTTP requests, inspect responses, and assert expected behavior
 const api = supertest(app)
 
@@ -137,6 +140,60 @@ describe('deletion of a task', () => {
   
   })
 })
+})
+
+//User tests
+
+describe('when there is initially one user in db', () => {
+  beforeEach(async () => {
+    await User.deleteMany({})
+
+    //add 1 user
+    const passwordHash = await bcrypt.hash('sekret', 10)
+    const user = new User({username: 'root', passwordHash})
+
+    await user.save()
+  })
+
+  test('creation succeeds with a fresh username', async () => {
+    const usersAtStart = await helper.usersInD()
+    
+    //create User model -> pass a JS object as param
+    const newUser = {
+      username: 'visi1',
+      name:'visi',
+      password:'visi',
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+      const usersAtEnd = await helper.usersInD()
+      assert.strictEqual(usersAtEnd.length, usersAtStart.length + 1)
+
+      const usernames = usersAtEnd.map(user => user.username)
+      assert(usernames.includes(newUser.username))
+  })
+
+  test('creation fails with proper statuscode and message if username already taken', async () => {
+    //expect 400
+    const newUser = {
+      username: 'root',
+      name:'root2',
+      password:'sekret',
+    }
+
+    await api 
+    .post('/api/users')
+    .send(newUser)
+    .expect(400)
+
+  })
+
+
 })
 
   after(async () => {

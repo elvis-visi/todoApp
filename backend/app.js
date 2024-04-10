@@ -27,6 +27,8 @@ mongoose.connect(config.MONGODB_URI)
     app.use('/api/tasks', taskRouter)
     app.use('/api/users', usersRouter)
 
+    app.use(middleware.errorHandler);
+
     const unknownEndpoint = (request, response) => {
         response.status(404).send({ error: 'unknown endpoint' })
       }
