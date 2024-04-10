@@ -29,11 +29,11 @@ const tasksInDb = async () => {
     return tasks.map(task => task.toJSON())
 }
 
-const usersInD = async () => {
+const usersInDB = async () => {
     const users = await User.find({})
     return users.map(user => user.toJSON())
 }
 
 module.exports =  {
-    initialTasks, tasksInDb, usersInD
+    initialTasks, tasksInDb, usersInDB
 }

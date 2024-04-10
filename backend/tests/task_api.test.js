@@ -156,7 +156,7 @@ describe('when there is initially one user in db', () => {
   })
 
   test('creation succeeds with a fresh username', async () => {
-    const usersAtStart = await helper.usersInD()
+    const usersAtStart = await helper.usersInDB()
     
     //create User model -> pass a JS object as param
     const newUser = {
@@ -171,7 +171,7 @@ describe('when there is initially one user in db', () => {
       .expect(201)
       .expect('Content-Type', /application\/json/)
 
-      const usersAtEnd = await helper.usersInD()
+      const usersAtEnd = await helper.usersInDB()
       assert.strictEqual(usersAtEnd.length, usersAtStart.length + 1)
 
       const usernames = usersAtEnd.map(user => user.username)
@@ -179,17 +179,24 @@ describe('when there is initially one user in db', () => {
   })
 
   test('creation fails with proper statuscode and message if username already taken', async () => {
-    //expect 400
+    const usersAtStart = await helper.usersInDB()
+
     const newUser = {
       username: 'root',
       name:'root2',
       password:'sekret',
     }
 
-    await api 
+    const result = await api 
     .post('/api/users')
     .send(newUser)
     .expect(400)
+    .expect('Content-Type', /application\/json/)
+
+    const usersAtEnd = await helper.usersInDB()
+    assert(result.body.error.includes('expected `username` to be unique'))
+
+    assert.strictEqual(usersAtStart.length, usersAtEnd.length)
 
   })
 
