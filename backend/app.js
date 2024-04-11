@@ -7,6 +7,7 @@ const middleware = require('./utils/middleware')
 
 const taskRouter = require('./controllers/tasks')
 const usersRouter = require('./controllers/users')
+const loginRouter = require('./controllers/login')
 
 // MongoDB Connection
 mongoose.set('strictQuery', false)
@@ -26,6 +27,7 @@ mongoose.connect(config.MONGODB_URI)
 
     app.use('/api/tasks', taskRouter)
     app.use('/api/users', usersRouter)
+    app.use('/api/login', loginRouter)
 
     app.use(middleware.errorHandler);
 
