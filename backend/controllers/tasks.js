@@ -10,6 +10,27 @@ taskRouter.get('/',async (request, response) => {
     response.json(tasks)
 } )
 
+
+taskRouter.get('/filter', async (request, response, next) => {
+  try {
+      const { priority } = request.query;
+      const filterOptions = {};
+      console.log("Filtering tasks by priority:", priority);  // Debug log
+
+      if (priority) {
+          filterOptions.priority = priority;
+      }
+
+      const tasks = await Task.find(filterOptions).populate('user', { username: 1 });
+      console.log("Filtered tasks:", tasks);  // Debug log
+      response.json(tasks);
+  } catch (error) {
+      console.error("Error in /filter endpoint:", error);  // Error logging
+      next(error);
+  }
+});
+
+
 taskRouter.get('/:id', async (request, response, next) => {
     try {
       const task = await Task.findById(request.params.id)
@@ -23,7 +44,10 @@ taskRouter.get('/:id', async (request, response, next) => {
     }
   })
 
-  
+// tasks.js controller
+
+
+
                  
 taskRouter.delete('/:id', async (request, response, next) => {
    try{
