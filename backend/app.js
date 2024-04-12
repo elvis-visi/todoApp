@@ -25,7 +25,7 @@ mongoose.connect(config.MONGODB_URI)
     app.use(express.json())
     app.use(middleware.requestLogger)
 
-    app.use('/api/tasks', taskRouter)
+    app.use('/api/tasks',taskRouter)
     app.use('/api/users', usersRouter)
     app.use('/api/login', loginRouter)
 

@@ -2,7 +2,7 @@ const taskRouter =require('express').Router()
 const Task = require('../models/task')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
-
+const middleware = require('../utils/middleware')
 
 taskRouter.get('/',async (request, response) => {
     const tasks = await Task
@@ -80,25 +80,10 @@ taskRouter.delete('/:id', async (request, response, next) => {
 
 
 
-const getTokenFrom = request => {
-  const authorization = request.get('authorization') // 'bearer token'
-
-  if(authorization && authorization.toLowerCase().startsWith('bearer ')){
-    return authorization.substring(7)
-  }
-  return null
-}
-
-
-taskRouter.post('/', async (request,response,next) => {
+taskRouter.post('/', middleware.getUser, async (request,response,next) => {
     const body = request.body
+    const user = request.user
 
-    const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET)
-    if(!decodedToken.id) {
-      return response.status(401).json({error: 'token invalid'})
-    }
-
-    const user = await User.findById(decodedToken.id);
     if (!user) {
       return response.status(404).json({ error: 'User not found' });
     }

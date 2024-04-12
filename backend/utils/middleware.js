@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken')
+const User = require('../models/user')
 const logger = require('./logger')
 
 const requestLogger = (request, response, next) => {
@@ -7,6 +9,33 @@ const requestLogger = (request, response, next) => {
   logger.info('---')
   next()
 }
+
+const getTokenFrom = request => {
+  const authorization = request.get('authorization') // 'bearer token'
+
+  if(authorization && authorization.toLowerCase().startsWith('bearer ')){
+    return authorization.substring(7)
+  }
+  return null
+}
+
+const getUser = async (request,response, next) => {
+
+  const token = getTokenFrom(request)
+  if(!token){
+    return next(new JsonWebTokenError('token not provided'));
+  }
+
+  const decodedToken = jwt.verify(token, process.env.SECRET)
+  if(!decodedToken.id) {
+    return response.status(401).json({error: 'token invalid'})
+  }
+
+  
+  request.user = await User.findById(decodedToken.id)
+  next()
+}
+
 
 const errorHandler = (error, request, response, next) => {
   if (error.name === 'CastError') {
@@ -29,5 +58,5 @@ const errorHandler = (error, request, response, next) => {
 
 
 module.exports = {
-    requestLogger,errorHandler
+    requestLogger,errorHandler,getUser
 }
