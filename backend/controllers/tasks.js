@@ -30,6 +30,26 @@ taskRouter.get('/filter', async (request, response, next) => {
   }
 });
 
+// api/tasks/search?searchTerm='vv'
+taskRouter.get('/search', async(request,response,next) => {
+
+ try{
+  const {searchTerm} = request.query
+  const filterOptions = {}
+
+  if(searchTerm){
+    filterOptions.title = {$regex: searchTerm, $options: 'i'}
+  }
+  const tasks = await Task.find(filterOptions).populate('user',{username:1})
+  response.json(tasks)
+ }catch (error) {
+  console.error("Error in /search endpoint:", error);  
+  next(error);
+}
+
+ 
+})
+
 
 taskRouter.get('/:id', async (request, response, next) => {
     try {
