@@ -93,10 +93,17 @@ if (allowedFields.includes(sortBy) && ['asc', 'desc'].includes(order)) {
 })
 
 
-taskRouter.get('/filter', async (request, response, next) => {
+taskRouter.get('/filter', middleware.getUser, async (request, response, next) => {
+  
+  const user = request.user
+
+  if (!user) {
+    return response.status(404).json({ error: 'User not found' });
+}
+  
   try {
       const { priority } = request.query;
-      const filterOptions = {};
+      const filterOptions = { user: user._id};
       console.log("Filtering tasks by priority:", priority);  // Debug log
 
       if (priority) {
