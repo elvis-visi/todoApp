@@ -4,6 +4,48 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const middleware = require('../utils/middleware')
 
+
+taskRouter.put('/reschedule', middleware.getUser, async (request, response, next) => {
+  const { newDueDate } = request.body;
+  const user = request.user;
+
+  if (!user) {
+      return response.status(404).json({ error: 'User not found' });
+  }
+
+  if (!newDueDate) {
+      return response.status(400).json({ error: 'New due date is required' });
+  }
+
+  // Convert newDueDate to a Date object and validate it
+  const parsedNewDueDate = new Date(newDueDate);
+  if (isNaN(parsedNewDueDate.getTime())) {
+      return response.status(400).json({ error: 'Invalid new due date provided' });
+  }
+
+  try {
+      // Update all tasks for this user where the dueDate is past (overdue)
+      const result = await Task.updateMany(
+          {
+              user: user._id,     // only the tasks of the logged-in user are updated
+              dueDate: { $lt: new Date() } // Selects tasks whose dueDate is less than the current date (overdue)
+          },
+          {
+              $set: { dueDate: parsedNewDueDate } // Sets the new dueDate for the matched tasks
+          }
+      );
+
+      if (result.nModified === 0) {
+          return response.status(404).json({ message: "No overdue tasks found to reschedule." });
+      }
+
+      response.status(200).json({ message: 'Overdue tasks rescheduled successfully.' });
+  } catch (error) {
+      console.error("Error in /reschedule endpoint:", error);
+      next(error);
+  }
+});
+
 taskRouter.get('/',async (request, response) => {
     const tasks = await Task
     .find({}).populate('user',{username:1})
@@ -165,6 +207,10 @@ taskRouter.put('/:id', middleware.getUser, async (request, response, next) => {
     next(exception);
   }
 });
+
+
+
+
 
 module.exports = taskRouter
 
