@@ -62,7 +62,15 @@ taskRouter.get('/', middleware.getUser,async (request, response, next) => {
 }
 } )
 
-taskRouter.get('/sort', async (request, response) => {
+taskRouter.get('/sort', middleware.getUser,async (request, response) => {
+  
+  const user = request.user
+
+  if (!user) {
+    return response.status(404).json({ error: 'User not found' });
+}
+  
+  
   //query params passed, sortBy and the order --> asc/desc  1/-1
   const {sortBy, order} = request.query
   //empty object where we pass the params
@@ -75,7 +83,12 @@ if (allowedFields.includes(sortBy) && ['asc', 'desc'].includes(order)) {
   return response.status(400).json({ error: 'Invalid sort options provided' });
 }
   //fetch tasks, and sort(), pass the sortObject to sort(), then populate
-  const tasks = await Task.find({}).sort(sortOptions).populate('user',{username :1})
+  const tasks = await Task.find(
+    {
+      user : user._id
+    }
+    ).
+  sort(sortOptions).populate('user',{username :1})
   response.json(tasks);
 })
 
