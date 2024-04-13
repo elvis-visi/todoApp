@@ -46,10 +46,20 @@ taskRouter.put('/reschedule', middleware.getUser, async (request, response, next
   }
 });
 
-taskRouter.get('/',async (request, response) => {
-    const tasks = await Task
-    .find({}).populate('user',{username:1})
-    response.json(tasks)
+taskRouter.get('/', middleware.getUser,async (request, response, next) => {
+    
+  const user = request.user;
+
+  if (!user) {
+      return response.status(404).json({ error: 'User not found' });
+  }
+  //fetch only the tasks of the logged in user
+  try {
+    const tasks = await Task.find({ user: user._id }).populate('user', {username: 1});
+    response.json(tasks);
+} catch (error) {
+    next(error)
+}
 } )
 
 taskRouter.get('/sort', async (request, response) => {
