@@ -114,4 +114,40 @@ taskRouter.post('/', middleware.getUser, async (request,response,next) => {
 
 })
 
+taskRouter.put('/:id', middleware.getUser, async (request, response, next) => {
+  const body = request.body;
+  const user = request.user;
+  const taskId = request.params.id;
+
+  if (!user) {
+    return response.status(404).json({ error: 'User not found' });
+  }
+
+  try {
+    const task = await Task.findById(taskId);
+    if (!task) {
+      return response.status(404).json({ error: 'Task not found' });
+    }
+
+    if (task.user.toString() !== user._id.toString()) {
+      return response.status(403).json({ error: 'Not authorized to update this task' });
+    }
+
+    const updatedTask = {
+      title: body.title,
+      description: body.description,
+      dueDate: body.dueDate,
+      priority: body.priority,
+      completed: body.completed,
+    };
+
+    //{ new: true } option ensures that the updated task is returned in the response.
+    const savedTask = await Task.findByIdAndUpdate(taskId, updatedTask, { new: true });
+    response.json(savedTask);
+  } catch (exception) {
+    next(exception);
+  }
+});
+
 module.exports = taskRouter
+
