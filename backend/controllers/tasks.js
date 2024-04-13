@@ -10,6 +10,23 @@ taskRouter.get('/',async (request, response) => {
     response.json(tasks)
 } )
 
+taskRouter.get('/sort', async (request, response) => {
+  //query params passed, sortBy and the order --> asc/desc  1/-1
+  const {sortBy, order} = request.query
+  //empty object where we pass the params
+  const sortOptions = {}
+  //conditionals, which params to add to sortObject
+  const allowedFields = ['dateAdded', 'dueDate', 'priority'];
+if (allowedFields.includes(sortBy) && ['asc', 'desc'].includes(order)) {
+  sortOptions[sortBy] = order === 'desc' ? -1 : 1;
+} else {
+  return response.status(400).json({ error: 'Invalid sort options provided' });
+}
+  //fetch tasks, and sort(), pass the sortObject to sort(), then populate
+  const tasks = await Task.find({}).sort(sortOptions).populate('user',{username :1})
+  response.json(tasks);
+})
+
 
 taskRouter.get('/filter', async (request, response, next) => {
   try {
