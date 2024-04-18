@@ -2,7 +2,7 @@ const tasks =   [
   {
       "title": "Task 4",
       "description": "adding a new task",
-      "dueDate": "2024-04-18T00:00:00.000Z",
+      "dueDate": "2024-04-16T00:00:00.000Z",
       "dateAdded": "2024-04-11T09:57:47.823Z",
       "priority": 2,
       "completed": false,
@@ -29,29 +29,40 @@ const tasks =   [
 
  //parent takes the data at props, pass it down  to the sub components
 
- const TaskListView = ({tasks}) => {
+ const TaskListView = ({ tasks }) => {
+  const todayAtMidnight = new Date();
+  todayAtMidnight.setHours(0, 0, 0, 0);
    
-  // const date = Date.now()
-  //check current date; tasks with dueDate > current date, store in 
-  // overDue array ?
-
-  //today tasks in today's array? 
-
-
-
-  //Display all tasks initially
+  // Split tasks into overdue and today's tasks
+  const overdueTasks = tasks.filter(task => new Date(task.dueDate) < todayAtMidnight);
+  const todaysTasks = tasks.filter(task => 
+    new Date(task.dueDate).toDateString() === new Date().toDateString()
+  );
 
   return (
     <div className="task-list-view">
-      {tasks.map(task => (
-        <TaskItem key={task.id} {...task} />
-      ))}
-      {/* AddTaskButton will go here */}
-      <button>Add Task</button>
-    </div>
-  );
+      {overdueTasks.length > 0 && (
+        <>
+          <h2>Overdue</h2>
+          {overdueTasks.map(task => (
+            <TaskItem key={task.id} {...task} />
+          ))}
+        </>
+      )}
 
- }
+      {todaysTasks.length > 0 && (
+        <>
+          <h2>Today</h2>
+          {todaysTasks.map(task => (
+            <TaskItem key={task.id} {...task} />
+          ))}
+        </>
+      )}
+
+      <button>Add Task</button>
+    </div> 
+  );
+};
 
 
  function TaskItem({ title, description, dueDate, priority }) {
