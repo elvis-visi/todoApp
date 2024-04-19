@@ -27,6 +27,23 @@ const tasks =   [
   },]
 
 
+ const Header = () => {
+ //include a menu toggle, button for filtering/sorting
+  return(
+    <div className="header"> 
+       <button className="menu-toggle">☰</button>
+       <button className="sort-button">Sort</button>
+    </div>
+  )
+ }
+
+ function AddNewTaskButton() {
+  return (
+    <button className="add-task-button">+ Add Task</button>
+  );
+}
+
+
  //parent takes the data at props, pass it down  to the sub components
 
  const TaskListView = ({ tasks }) => {
@@ -41,9 +58,10 @@ const tasks =   [
 
   return (
     <div className="task-list-view">
+      <Header />
       {overdueTasks.length > 0 && (
         <>
-          <h2>Overdue</h2>
+          <h2>Overdue</h2>  <button>reschedule overdue tasks</button>
           {overdueTasks.map(task => (
             <TaskItem key={task.id} {...task} />
           ))}
@@ -59,7 +77,7 @@ const tasks =   [
         </>
       )}
 
-      <button>Add Task</button>
+      <AddNewTaskButton />
     </div> 
   );
 };
@@ -68,6 +86,7 @@ const tasks =   [
  function TaskItem({ title, description, dueDate, priority }) {
   return (
     <div className="task-item">
+      <input type="checkbox" disabled />
       <h3>{title}</h3>
       <p>{description}</p>
       <p>Due by: {new Date(dueDate).toLocaleDateString()}</p>
