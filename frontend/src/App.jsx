@@ -30,7 +30,7 @@ const tasks =   [
   {
     "title": "nodeJs",
     "description": "JS environment",
-    "dueDate": "2024-04-19T00:00:00.000Z",
+    "dueDate": "2024-04-20T00:00:00.000Z",
     "dateAdded": "2024-04-11T10:02:21.246Z",
     "priority": 3,
     "completed": false,

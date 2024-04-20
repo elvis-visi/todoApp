@@ -9,6 +9,9 @@ function TaskItem({ title, description, dueDate, priority }) {
         <p>{description}</p>
         <p>Due by: {new Date(dueDate).toLocaleDateString()}</p>
         <p>Priority: {priority}</p>
+        <input 
+         type="date"
+        />
 
        </div>
        
