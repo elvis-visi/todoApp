@@ -1,0 +1,51 @@
+/* Global styles */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .task-list-view {
+    padding: 25px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     padding: 10px;
+  background-color: #eee;
+  }
+
+
+
+  .task-item {
+    border: 1px solid #ddd; 
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: baseline;
+    background-color: #fff;
+  }
+
+    
+  .task-list-headerOverdue,
+.task-list-headerToday {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+  
+  
+  
+  .add-task-button {
+    background-color: #4CAF50; 
+    color: white;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  
+  }

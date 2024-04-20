@@ -17,7 +17,10 @@ const TaskListView = ({ tasks }) => {
         <Header />
         {overdueTasks.length > 0 && (
           <>
-            <h2>Overdue</h2>  <button>reschedule overdue tasks</button>
+          <div className="task-list-headerOverdue">
+          <h2>Overdue</h2>  <button>reschedule overdue tasks</button>
+          </div>
+           
             {overdueTasks.map(task => (
               <TaskItem key={task.id} {...task} />
             ))}
@@ -26,7 +29,9 @@ const TaskListView = ({ tasks }) => {
   
         {todaysTasks.length > 0 && (
           <>
-            <h2>Today</h2>
+          <div className="task-list-headerToday">
+          <h2>Today</h2>
+          </div>
             {todaysTasks.map(task => (
               <TaskItem key={task.id} {...task} />
             ))}
