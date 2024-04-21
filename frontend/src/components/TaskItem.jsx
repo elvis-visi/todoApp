@@ -1,3 +1,6 @@
+
+import EditDeleteIcons from "./EditDeleteIcons";
+
 function TaskItem({ title, description, dueDate, priority }) {
     return (
       <div className="task-item">
@@ -12,6 +15,8 @@ function TaskItem({ title, description, dueDate, priority }) {
         <input 
          type="date"
         />
+
+      <EditDeleteIcons />
 
        </div>
        

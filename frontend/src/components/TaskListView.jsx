@@ -18,7 +18,11 @@ const TaskListView = ({ tasks }) => {
         {overdueTasks.length > 0 && (
           <>
           <div className="task-list-headerOverdue">
-          <h2>Overdue</h2>  <button>reschedule overdue tasks</button>
+          <h2>Overdue</h2>  
+          reschedule overdue tasks
+          <input 
+          type="date"
+          />
           </div>
            
             {overdueTasks.map(task => (

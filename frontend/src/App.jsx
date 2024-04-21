@@ -30,7 +30,7 @@ const tasks =   [
   {
     "title": "nodeJs",
     "description": "JS environment",
-    "dueDate": "2024-04-20T00:00:00.000Z",
+    "dueDate": "2024-04-21T00:00:00.000Z",
     "dateAdded": "2024-04-11T10:02:21.246Z",
     "priority": 3,
     "completed": false,
@@ -39,6 +39,32 @@ const tasks =   [
         "id": "6616c02c51c8f07efa59438c"
     },
     "id": "6617b52dfe90b38b8bb021fc"
+},
+{
+  "title": "nodeJs",
+  "description": "JS environment",
+  "dueDate": "2024-04-22T00:00:00.000Z",
+  "dateAdded": "2024-04-11T10:02:21.246Z",
+  "priority": 3,
+  "completed": false,
+  "user": {
+      "username": "visi",
+      "id": "6616c02c51c8f07efa59438c"
+  },
+  "id": "6617b52dfe90b38b8bb021fc"
+},
+{
+  "title": "nodeJs",
+  "description": "JS environment",
+  "dueDate": "2024-04-25T00:00:00.000Z",
+  "dateAdded": "2024-04-11T10:02:21.246Z",
+  "priority": 3,
+  "completed": false,
+  "user": {
+      "username": "visi",
+      "id": "6616c02c51c8f07efa59438c"
+  },
+  "id": "6617b52dfe90b38b8bb021fc"
 },
 ]
 
