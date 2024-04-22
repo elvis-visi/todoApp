@@ -2,6 +2,25 @@ import Header from "./Header";
 import TaskItem from "./TaskItem";
 import AddNewTaskButton from './AddNewTaskButton'
 
+
+const groupTasksByDueDate = (tasks, todayAtMidnight) => {
+
+  return tasks
+    .filter(task => new Date(task.dueDate) > todayAtMidnight)
+    .reduce((acc,task) => {
+      //for each task we check whether its dueDate is a property in acc
+      const dateStr = new Date(task.dueDate).toDateString();
+      //if not create that property and add key-value  dueDateStr- [] to acc
+      if(!acc[dateStr]){
+        acc[dateStr] = [];
+      }
+      //else push the task to th
+      acc[dateStr].push(task)
+      return acc;
+    },{})
+}
+
+
 const TaskListView = ({ tasks }) => {
     const todayAtMidnight = new Date();
     todayAtMidnight.setHours(0, 0, 0, 0);
@@ -11,6 +30,7 @@ const TaskListView = ({ tasks }) => {
     const todaysTasks = tasks.filter(task => 
       new Date(task.dueDate).toDateString() === new Date().toDateString()
     );
+    const groupedUpcomingTasks = groupTasksByDueDate(tasks, todayAtMidnight);
   
     return (
       <div className="task-list-view">
@@ -41,6 +61,14 @@ const TaskListView = ({ tasks }) => {
             ))}
           </>
         )}
+
+   {Object.entries(groupedUpcomingTasks).map(([date, tasks]) => (
+        <section key={date}>
+          <h2>{date}</h2>
+          {tasks.map(task => 
+          <TaskItem key={task.id} {...task} />)}
+        </section>
+      ))}
   
         <AddNewTaskButton />
       </div> 
