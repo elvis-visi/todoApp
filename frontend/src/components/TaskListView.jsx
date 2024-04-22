@@ -59,6 +59,7 @@ const TaskListView = ({ tasks }) => {
             {todaysTasks.map((task,index)=> (
               <TaskItem key={task.id + index} {...task} />
             ))}
+             <AddNewTaskButton/>
           </>
         )}
 
@@ -67,10 +68,10 @@ const TaskListView = ({ tasks }) => {
           <h2>{date}</h2>
           {tasks.map((task,index)=> 
           <TaskItem key={task.id + index} {...task} />)}
+              <AddNewTaskButton/>
         </section>
       ))}
   
-        <AddNewTaskButton />
       </div> 
     );
   };
