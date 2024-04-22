@@ -45,8 +45,8 @@ const TaskListView = ({ tasks }) => {
           />
           </div>
            
-            {overdueTasks.map(task => (
-              <TaskItem key={task.id} {...task} />
+            {overdueTasks.map((task,index) => (
+              <TaskItem key={task.id + index} {...task} />
             ))}
           </>
         )}
@@ -56,8 +56,8 @@ const TaskListView = ({ tasks }) => {
           <div className="task-list-headerToday">
           <h2>Today</h2>
           </div>
-            {todaysTasks.map(task => (
-              <TaskItem key={task.id} {...task} />
+            {todaysTasks.map((task,index)=> (
+              <TaskItem key={task.id + index} {...task} />
             ))}
           </>
         )}
@@ -65,8 +65,8 @@ const TaskListView = ({ tasks }) => {
    {Object.entries(groupedUpcomingTasks).map(([date, tasks]) => (
         <section key={date}>
           <h2>{date}</h2>
-          {tasks.map(task => 
-          <TaskItem key={task.id} {...task} />)}
+          {tasks.map((task,index)=> 
+          <TaskItem key={task.id + index} {...task} />)}
         </section>
       ))}
   

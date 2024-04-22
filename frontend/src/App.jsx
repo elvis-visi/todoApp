@@ -15,6 +15,19 @@ const tasks =   [
       "id": "6617b41bfe90b38b8bb021f5"
   },
   {
+    "title": "Task 5",
+    "description": "adding a new task",
+    "dueDate": "2024-04-16T00:00:00.000Z",
+    "dateAdded": "2024-04-11T09:57:47.823Z",
+    "priority": 2,
+    "completed": false,
+    "user": {
+        "username": "visi",
+        "id": "6616c02c51c8f07efa59438c"
+    },
+    "id": "6617b41bfe90b38b8bb021f5"
+},
+  {
       "title": "react",
       "description": "adding a new task",
       "dueDate": "2024-04-18T00:00:00.000Z",
