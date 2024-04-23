@@ -4,7 +4,7 @@ const tasks =   [
   {
       "title": "Task 4",
       "description": "adding a new task",
-      "dueDate": "2024-04-16T00:00:00.000Z",
+      "dueDate": "2024-04-23T00:00:00.000Z",
       "dateAdded": "2024-04-11T09:57:47.823Z",
       "priority": 2,
       "completed": false,
@@ -30,7 +30,7 @@ const tasks =   [
   {
       "title": "react",
       "description": "adding a new task",
-      "dueDate": "2024-04-18T00:00:00.000Z",
+      "dueDate": "2024-05-18T00:00:00.000Z",
       "dateAdded": "2024-04-11T10:02:21.246Z",
       "priority": 3,
       "completed": false,
@@ -56,7 +56,7 @@ const tasks =   [
 {
   "title": "nodeJs",
   "description": "JS environment",
-  "dueDate": "2024-04-22T00:00:00.000Z",
+  "dueDate": "2024-04-24T00:00:00.000Z",
   "dateAdded": "2024-04-11T10:02:21.246Z",
   "priority": 3,
   "completed": false,

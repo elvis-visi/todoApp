@@ -63,9 +63,16 @@ const TaskListView = ({ tasks }) => {
           </>
         )}
 
-   {Object.entries(groupedUpcomingTasks).map(([date, tasks]) => (
+
+
+   {Object.entries(groupedUpcomingTasks)
+    .sort(([dateA],[dateB]) => new Date(dateA) - new Date(dateB))
+    .map(([date, tasks]) => (
         <section key={date}>
           <h2>{date}</h2>
+
+          
+
           {tasks.map((task,index)=> 
           <TaskItem key={task.id + index} {...task} />)}
               <AddNewTaskButton/>
