@@ -22,12 +22,26 @@ const groupTasksByDueDate = (tasks, todayAtMidnight) => {
 }
 
 
+// updateTask function    takes in id
+//  in TaskItem if checkbox clicked, call this fuction
+
+
 const TaskListView = ({ tasks, setTasks }) => {
 
   const [searchTerm,setSearchTerm] = useState('')
   
   const filteredTasks = tasks.filter(task => 
-    task.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    task.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+
+    const toggleTaskCompleted = (taskId) => {
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === taskId ? { ...task, completed: true } : task
+        )
+      );
+    };
+    
 
   
    const addNewTask = (newTask) => {
@@ -38,8 +52,9 @@ const TaskListView = ({ tasks, setTasks }) => {
     todayAtMidnight.setHours(0, 0, 0, 0);
      
     // Split tasks into overdue and today's tasks
-    const overdueTasks = filteredTasks.filter(task => new Date(task.dueDate) < todayAtMidnight);
-    const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks, todayAtMidnight);
+    const overdueTasks = filteredTasks.filter(task => new Date(task.dueDate) < todayAtMidnight && !task.completed);
+const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks.filter(task => !task.completed), todayAtMidnight);
+
   
     return (
       <div className="task-list-view">
@@ -57,7 +72,11 @@ const TaskListView = ({ tasks, setTasks }) => {
           </div>
            
             {overdueTasks.map((task,index) => (
-              <TaskItem key={task.id + index} {...task} />
+              <TaskItem 
+              key={task.id + index} 
+              task={task}
+              toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
+              />
             ))}
           </>
         )}
@@ -75,7 +94,11 @@ const TaskListView = ({ tasks, setTasks }) => {
           
 
           {tasks.map((task,index)=> 
-          <TaskItem key={task.id + index} {...task} />)}
+          <TaskItem 
+          key={task.id + index} 
+          task={task} 
+          toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
+          />)}
               <AddNewTaskButton
                  addNewTask={addNewTask}
                  date={date}

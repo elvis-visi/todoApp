@@ -1,11 +1,20 @@
 
 import EditDeleteIcons from "./EditDeleteIcons";
 
-function TaskItem({ title, description, dueDate, priority }) {
-    return (
+function TaskItem({task,toggleTaskCompleted}) {
+  
+  const { id, completed, title, description, dueDate, priority, } = task
+
+  
+  return (
       <div className="task-item">
        
-        <input type="checkbox" disabled />
+       <button
+        onClick={toggleTaskCompleted}
+        disabled={completed}
+      >
+        Done
+      </button>
        
        <div className="task-item-content">
        <h3>{title}</h3>
