@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EditDeleteIcons from "./EditDeleteIcons";
 
-function TaskItem({ task, toggleTaskCompleted, updateTask }) {
+function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
  
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(task.title);
@@ -53,6 +53,9 @@ function TaskItem({ task, toggleTaskCompleted, updateTask }) {
       <p>Priority: {priority}</p>
       <p>Due by: {new Date(dueDate).toLocaleDateString()}</p>
       <button onClick={() => setEditMode(true)}>Edit</button>
+      <button onClick={deleteTask} className="delete-task-button">
+        Delete
+      </button>
     </div>
   );
 }

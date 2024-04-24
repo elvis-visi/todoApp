@@ -50,7 +50,9 @@ const updateTask = (updatedTask) => {
   );
 };
 
-
+const deleteTask = (taskId) => {
+  setTasks((prevTasks) => prevTasks.filter(task => task.id !== taskId));
+};
   
    const addNewTask = (newTask) => {
     setTasks(tasks.concat(newTask));
@@ -85,6 +87,7 @@ const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks.filter(task => !t
               task={task}
               toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
               updateTask={updateTask}
+              deleteTask={() => deleteTask(task.id)}
               />
             ))}
           </>
@@ -108,6 +111,7 @@ const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks.filter(task => !t
           task={task} 
           toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
           updateTask={updateTask}
+          deleteTask={() => deleteTask(task.id)}
           />)}
               <AddNewTaskButton
                  addNewTask={addNewTask}

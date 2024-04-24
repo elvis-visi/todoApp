@@ -51,4 +51,17 @@ body, h1, h2, h3, p {
   }
 
 
+  .delete-task-button {
+    background-color: red;
+    color: white;
+    border: solid;
+    padding: 4px 6px;
+    margin-left: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-task-button:hover {
+    background-color: darkred;
+  }
   
