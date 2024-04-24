@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "./Header";
 import TaskItem from "./TaskItem";
 import AddNewTaskButton from './AddNewTaskButton'
@@ -23,26 +24,28 @@ const groupTasksByDueDate = (tasks, todayAtMidnight) => {
 
 const TaskListView = ({ tasks, setTasks }) => {
 
+  const [searchTerm,setSearchTerm] = useState('')
+  
+  const filteredTasks = tasks.filter(task => 
+    task.title.toLowerCase().includes(searchTerm.toLowerCase()))
 
-
+  
    const addNewTask = (newTask) => {
-    setTasks(tasks.concat(newTask))
-   }
+    setTasks(tasks.concat(newTask));
+}
 
     const todayAtMidnight = new Date();
     todayAtMidnight.setHours(0, 0, 0, 0);
      
     // Split tasks into overdue and today's tasks
-    const overdueTasks = tasks.filter(task => new Date(task.dueDate) < todayAtMidnight);
-   
-
-
-
-    const groupedUpcomingTasks = groupTasksByDueDate(tasks, todayAtMidnight);
+    const overdueTasks = filteredTasks.filter(task => new Date(task.dueDate) < todayAtMidnight);
+    const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks, todayAtMidnight);
   
     return (
       <div className="task-list-view">
-        <Header />
+        <Header 
+        searchTerm={searchTerm} 
+        setSearchTerm={setSearchTerm}/>
         {overdueTasks.length > 0 && (
           <>
           <div className="task-list-headerOverdue">
