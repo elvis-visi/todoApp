@@ -22,8 +22,7 @@ const groupTasksByDueDate = (tasks, todayAtMidnight) => {
 }
 
 
-// updateTask function    takes in id
-//  in TaskItem if checkbox clicked, call this fuction
+
 
 
 const TaskListView = ({ tasks, setTasks }) => {
@@ -42,6 +41,15 @@ const TaskListView = ({ tasks, setTasks }) => {
       );
     };
     
+
+const updateTask = (updatedTask) => {
+  setTasks((prevTasks) =>
+    prevTasks.map((task) =>
+      task.id === updatedTask.id ? updatedTask : task
+    )
+  );
+};
+
 
   
    const addNewTask = (newTask) => {
@@ -76,6 +84,7 @@ const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks.filter(task => !t
               key={task.id + index} 
               task={task}
               toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
+              updateTask={updateTask}
               />
             ))}
           </>
@@ -98,6 +107,7 @@ const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks.filter(task => !t
           key={task.id + index} 
           task={task} 
           toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
+          updateTask={updateTask}
           />)}
               <AddNewTaskButton
                  addNewTask={addNewTask}

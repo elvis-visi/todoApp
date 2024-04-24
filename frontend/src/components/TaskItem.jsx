@@ -1,37 +1,62 @@
-
+import { useState } from "react";
 import EditDeleteIcons from "./EditDeleteIcons";
 
-function TaskItem({task,toggleTaskCompleted}) {
+function TaskItem({ task, toggleTaskCompleted, updateTask }) {
+ 
+  const [editMode, setEditMode] = useState(false);
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  const [priority, setPriority] = useState(task.priority);
+  const [dueDate, setDueDate] = useState(task.dueDate);
+ const {completed} = task
   
-  const { id, completed, title, description, dueDate, priority, } = task
+ const handleSave = () => {
+    const updatedTask = {
+      ...task,
+      title,
+      description,
+      priority,
+      dueDate
+    };
+    updateTask(updatedTask);
+    setEditMode(false); // Exit edit mode after saving changes
+  };
 
   
-  return (
+
+  if (editMode) {
+    return (
       <div className="task-item">
-       
-       <button
-        onClick={toggleTaskCompleted}
-        disabled={completed}
-      >
-        Done
-      </button>
-       
-       <div className="task-item-content">
-       <h3>{title}</h3>
-        <p>{description}</p>
-        <p>Due by: {new Date(dueDate).toLocaleDateString()}</p>
-        <p>Priority: {priority}</p>
-        <input 
-         type="date"
-        />
-
-      <EditDeleteIcons />
-
-       </div>
-       
+        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+        <button onClick={handleSave}>Save</button>
+        <button onClick={() => setEditMode(false)}>Cancel</button>
       </div>
     );
   }
+
+  return (
+    <div className="task-item">
+       <button
+        onClick={toggleTaskCompleted}
+        disabled={completed}
+      >Done</button>
+      
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <p>Priority: {priority}</p>
+      <p>Due by: {new Date(dueDate).toLocaleDateString()}</p>
+      <button onClick={() => setEditMode(true)}>Edit</button>
+    </div>
+  );
+}
+
 
 
   export default TaskItem
