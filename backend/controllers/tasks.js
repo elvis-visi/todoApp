@@ -55,7 +55,10 @@ taskRouter.get('/', middleware.getUser,async (request, response, next) => {
   }
   //fetch only the tasks of the logged in user
   try {
-    const tasks = await Task.find({ user: user._id }).populate('user', {username: 1});
+    const tasks = await Task.find(
+      { user: user._id ,
+        completed: false
+      }).populate('user', {username: 1});
     response.json(tasks);
 } catch (error) {
     next(error)
