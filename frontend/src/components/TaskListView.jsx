@@ -21,15 +21,23 @@ const groupTasksByDueDate = (tasks, todayAtMidnight) => {
 }
 
 
-const TaskListView = ({ tasks }) => {
+const TaskListView = ({ tasks, setTasks }) => {
+
+
+
+   const addNewTask = (newTask) => {
+    setTasks(tasks.concat(newTask))
+   }
+
     const todayAtMidnight = new Date();
     todayAtMidnight.setHours(0, 0, 0, 0);
      
     // Split tasks into overdue and today's tasks
     const overdueTasks = tasks.filter(task => new Date(task.dueDate) < todayAtMidnight);
-    const todaysTasks = tasks.filter(task => 
-      new Date(task.dueDate).toDateString() === new Date().toDateString()
-    );
+   
+
+
+
     const groupedUpcomingTasks = groupTasksByDueDate(tasks, todayAtMidnight);
   
     return (
@@ -51,31 +59,24 @@ const TaskListView = ({ tasks }) => {
           </>
         )}
   
-        {todaysTasks.length > 0 && (
-          <>
-          <div className="task-list-headerToday">
-          <h2>Today</h2>
-          </div>
-            {todaysTasks.map((task,index)=> (
-              <TaskItem key={task.id + index} {...task} />
-            ))}
-             <AddNewTaskButton/>
-          </>
-        )}
-
 
 
    {Object.entries(groupedUpcomingTasks)
     .sort(([dateA],[dateB]) => new Date(dateA) - new Date(dateB))
     .map(([date, tasks]) => (
         <section key={date}>
-          <h2>{date}</h2>
+          <h2>{ new Date(date).toDateString() === new Date().toDateString() ? 
+            'Today' : date
+        }</h2>
 
           
 
           {tasks.map((task,index)=> 
           <TaskItem key={task.id + index} {...task} />)}
-              <AddNewTaskButton/>
+              <AddNewTaskButton
+                 addNewTask={addNewTask}
+                 date={date}
+              />
         </section>
       ))}
   

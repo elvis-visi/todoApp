@@ -1,10 +1,12 @@
+import { useState } from "react";
 import TaskListView from "./components/TaskListView";
 
-const tasks =   [
+
+const tasksList =   [
   {
       "title": "Task 4",
       "description": "adding a new task",
-      "dueDate": "2024-04-23T00:00:00.000Z",
+      "dueDate": "2024-04-26T00:00:00.000Z",
       "dateAdded": "2024-04-11T09:57:47.823Z",
       "priority": 2,
       "completed": false,
@@ -17,7 +19,7 @@ const tasks =   [
   {
     "title": "Task 5",
     "description": "adding a new task",
-    "dueDate": "2024-04-16T00:00:00.000Z",
+    "dueDate": "2024-04-23T00:00:00.000Z",
     "dateAdded": "2024-04-11T09:57:47.823Z",
     "priority": 2,
     "completed": false,
@@ -83,10 +85,14 @@ const tasks =   [
 
  //parent takes the data at props, pass it down  to the sub components
 function App() {
+const [tasks,setTasks] = useState(tasksList)
 
   return (
     <>
-      <TaskListView  tasks={tasks}/>
+      <TaskListView  
+      tasks={tasks}
+      setTasks={setTasks}
+      />
     </>
   )
 }
