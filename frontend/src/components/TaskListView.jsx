@@ -28,6 +28,7 @@ const groupTasksByDueDate = (tasks, todayAtMidnight) => {
 const TaskListView = ({ tasks, setTasks }) => {
 
   const [searchTerm,setSearchTerm] = useState('')
+  const [sortType, setSortType] = useState('none');  // 'none', 'priority', or 'dateAdded'
   
   const filteredTasks = tasks.filter(task => 
     task.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -40,6 +41,16 @@ const TaskListView = ({ tasks, setTasks }) => {
         )
       );
     };
+
+    // Optionally sort tasks by priority (1 is highest priority)
+    const sortedTasks = filteredTasks.sort((a, b) => {
+      if (sortType === 'priority') {
+        return a.priority - b.priority;
+      } else if (sortType === 'dateAdded') {
+        return new Date(a.dateAdded) - new Date(b.dateAdded);
+      }
+      return 0; // No sorting
+    });
     
 
 const updateTask = (updatedTask) => {
@@ -62,8 +73,8 @@ const deleteTask = (taskId) => {
     todayAtMidnight.setHours(0, 0, 0, 0);
      
     // Split tasks into overdue and today's tasks
-    const overdueTasks = filteredTasks.filter(task => new Date(task.dueDate) < todayAtMidnight && !task.completed);
-const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks.filter(task => !task.completed), todayAtMidnight);
+    const overdueTasks = sortedTasks.filter(task => new Date(task.dueDate) < todayAtMidnight && !task.completed);
+const groupedUpcomingTasks = groupTasksByDueDate(sortedTasks.filter(task => !task.completed), todayAtMidnight);
 
   
     return (
@@ -71,6 +82,13 @@ const groupedUpcomingTasks = groupTasksByDueDate(filteredTasks.filter(task => !t
         <Header 
         searchTerm={searchTerm} 
         setSearchTerm={setSearchTerm}/>
+         <select value={sortType} onChange={(e) => setSortType(e.target.value)}>
+        <option value="none">No Sorting</option>
+        <option value="priority">Sort by Priority</option>
+        <option value="dateAdded">Sort by Date Added</option>
+      </select>
+
+
         {overdueTasks.length > 0 && (
           <>
           <div className="task-list-headerOverdue">
