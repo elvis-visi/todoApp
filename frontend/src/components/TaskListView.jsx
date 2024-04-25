@@ -29,7 +29,8 @@ const TaskListView = ({ tasks, setTasks }) => {
 
   const [searchTerm,setSearchTerm] = useState('')
   const [sortType, setSortType] = useState('none');  // 'none', 'priority', or 'dateAdded'
-  
+  const [reschedule, setReschedule] = useState();
+
   const filteredTasks = tasks.filter(task => 
     task.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -76,7 +77,27 @@ const deleteTask = (taskId) => {
     const overdueTasks = sortedTasks.filter(task => new Date(task.dueDate) < todayAtMidnight && !task.completed);
 const groupedUpcomingTasks = groupTasksByDueDate(sortedTasks.filter(task => !task.completed), todayAtMidnight);
 
+
+
+
+
   
+const rescheduleFunc = (e) => {
+  const newDueDate = e.target.value;
+  setReschedule(newDueDate);
+
+  // Update the tasks state with the new due dates
+  setTasks((prevTasks) =>
+  prevTasks.map((task) => {
+    if (overdueTasks.find((ot) => ot.id === task.id)) {
+      task.dueDate = newDueDate;
+    }
+    return task;
+  })
+);
+};
+
+
     return (
       <div className="task-list-view">
         <Header 
@@ -85,16 +106,14 @@ const groupedUpcomingTasks = groupTasksByDueDate(sortedTasks.filter(task => !tas
         sortType={sortType}
         setSortType={setSortType}
         />
-    
-
-
+  
         {overdueTasks.length > 0 && (
           <>
           <div className="task-list-headerOverdue">
           <h2>Overdue</h2>  
           reschedule overdue tasks
           <input 
-          type="date"
+          type="date" value={reschedule} onChange={(e) => rescheduleFunc(e)}
           />
           </div>
            
