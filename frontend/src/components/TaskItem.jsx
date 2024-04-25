@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EditDeleteIcons from "./EditDeleteIcons";
+
 
 function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
  
