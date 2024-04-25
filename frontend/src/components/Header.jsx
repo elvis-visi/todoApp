@@ -1,7 +1,7 @@
 import Menu from "./Menu"
 import SortingComponent from "./SortingComponent"
 
-const Header = ({searchTerm, setSearchTerm}) => {
+const Header = ({searchTerm, setSearchTerm, sortType, setSortType}) => {
     //include a menu toggle, button for filtering/sorting
      return(
        <div className="header"> 
@@ -9,7 +9,10 @@ const Header = ({searchTerm, setSearchTerm}) => {
           searchTerm={searchTerm} 
           setSearchTerm={setSearchTerm}
           />
-          <SortingComponent />
+          <SortingComponent 
+            sortType={sortType}
+            setSortType={setSortType}
+          />
        </div>
      )
     }

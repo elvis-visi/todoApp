@@ -1,14 +1,13 @@
-export default function SortingComponent() {
+export default function SortingComponent({sortType, setSortType}) {
     // Placeholder content
     return (
     
         <div className="sort-by">
-          <p>Sort by</p>
-          <ul>
-            <li>Due Date</li>
-            <li>Date added</li>
-            <li>Priority</li>
-          </ul>
+          <select value={sortType} onChange={(e) => setSortType(e.target.value)}>
+        <option value="none">No Sorting</option>
+        <option value="priority">Sort by Priority</option>
+        <option value="dateAdded">Sort by Date Added</option>
+      </select>
     </div>
      
     );

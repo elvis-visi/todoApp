@@ -81,12 +81,11 @@ const groupedUpcomingTasks = groupTasksByDueDate(sortedTasks.filter(task => !tas
       <div className="task-list-view">
         <Header 
         searchTerm={searchTerm} 
-        setSearchTerm={setSearchTerm}/>
-         <select value={sortType} onChange={(e) => setSortType(e.target.value)}>
-        <option value="none">No Sorting</option>
-        <option value="priority">Sort by Priority</option>
-        <option value="dateAdded">Sort by Date Added</option>
-      </select>
+        setSearchTerm={setSearchTerm}
+        sortType={sortType}
+        setSortType={setSortType}
+        />
+    
 
 
         {overdueTasks.length > 0 && (
