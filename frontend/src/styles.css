@@ -46,16 +46,23 @@ body, h1, h2, h3, p {
   
   
   
-  .add-task-button {
-    background-color: #4CAF50; 
-    color: white;
-    cursor: pointer;
-    display: block;
-    width: 100%;
+.add-task-button {
+  background-color: #0097a7; 
+  color: #fff; 
+  cursor: pointer;
+  display: block;
+  width: 100%;
   padding: 10px;
   margin-top: 10px;
-  
-  }
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.add-task-button:hover {
+  background-color: #007a83; 
+}
 
 
   .delete-task-button {
