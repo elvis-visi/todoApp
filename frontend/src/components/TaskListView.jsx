@@ -107,27 +107,31 @@ const rescheduleFunc = (e) => {
         setSortType={setSortType}
         />
   
-        {overdueTasks.length > 0 && (
-          <>
-          <div className="task-list-headerOverdue">
-          <h2>Overdue</h2>  
-         
-          <input 
-          type="date" value={reschedule} onChange={(e) => rescheduleFunc(e)}
-          />
-          </div>
-           
-            {overdueTasks.map((task,index) => (
-              <TaskItem 
-              key={task.id + index} 
-              task={task}
-              toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
-              updateTask={updateTask}
-              deleteTask={() => deleteTask(task.id)}
-              />
-            ))}
-          </>
-        )}
+       {overdueTasks.length > 0 && (
+  <section className="overdue_section">
+    <div className="task-list-headerOverdue">
+      <h2>Overdue</h2>
+      <button className="reschedule-btn" onClick={() => document.getElementById('reschedule-input').showPicker()}>
+        Reschedule
+      </button>
+      <input
+        type="date"
+        id="reschedule-input"
+        value={reschedule}
+        onChange={(e) => rescheduleFunc(e)}
+      />
+    </div>
+    {overdueTasks.map((task, index) => (
+      <TaskItem
+        key={task.id + index}
+        task={task}
+        toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
+        updateTask={updateTask}
+        deleteTask={() => deleteTask(task.id)}
+      />
+    ))}
+  </section>
+)}
   
 
 

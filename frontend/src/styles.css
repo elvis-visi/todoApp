@@ -24,7 +24,7 @@ body, h1, h2, h3, p {
 }
 
 .menu input[type="search"] {
-  width: 160px;
+  width: 100px;
   padding: 10px;
   font-size: 16px;
   border: none;
@@ -38,7 +38,6 @@ body, h1, h2, h3, p {
   display: flex;
   justify-content: space-between;
 }
-
 .menu li {
   margin-right: 20px;
 }
@@ -201,12 +200,50 @@ body, h1, h2, h3, p {
     border-radius: 4px;
   }
 
+  .overdue_section{
+    position: relative;
+  }
+
  
   .task-list-headerOverdue input[type="date"] {
     width: 100%; 
     max-width: 200px; /* set a maximum width to prevent it from getting too wide */
     padding: 10px;
     font-size: 16px;
+  }
+
+  .reschedule-btn {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .reschedule-btn:hover {
+    background-color: #f7f7f7;
+  }
+  
+  #reschedule-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  #reschedule-input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
   }
 
   
