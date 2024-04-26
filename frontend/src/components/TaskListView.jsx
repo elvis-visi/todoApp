@@ -111,7 +111,7 @@ const rescheduleFunc = (e) => {
           <>
           <div className="task-list-headerOverdue">
           <h2>Overdue</h2>  
-          reschedule overdue tasks
+         
           <input 
           type="date" value={reschedule} onChange={(e) => rescheduleFunc(e)}
           />
