@@ -6,8 +6,14 @@ body, h1, h2, h3, p {
   }
 
   .task-list-view {
+    display: flex;
+    flex-direction: column;
     padding: 25px;
+    max-width: 1200px; /* set the maximum width to 1200px */
+  margin: 0 auto; /* center the container horizontally */
   }
+
+  
   
   .header {
     display: flex;
@@ -26,6 +32,7 @@ body, h1, h2, h3, p {
     display: flex;
     align-items: baseline;
     background-color: #fff;
+    justify-content: space-between;
   }
 
     
@@ -65,3 +72,7 @@ body, h1, h2, h3, p {
     background-color: darkred;
   }
   
+.task-checkbox-title {
+  display: flex;
+}
+

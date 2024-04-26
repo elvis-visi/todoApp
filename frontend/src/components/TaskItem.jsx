@@ -43,19 +43,25 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
 
   return (
     <div className="task-item">
-       <button
-        onClick={toggleTaskCompleted}
-        disabled={completed}
-      >Done</button>
+      <div className="task-checkbox-title">
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={toggleTaskCompleted}
+      />
       
       <h3>{title}</h3>
-      <p>{description}</p>
-      <p>Priority: {priority}</p>
-      <p>Due by: {new Date(dueDate).toLocaleDateString()}</p>
-      <button onClick={() => setEditMode(true)}>Edit</button>
+      </div>
+     
+      
+    
+     <div className="editDelete">
+     <button onClick={() => setEditMode(true)}>Edit</button>
       <button onClick={deleteTask} className="delete-task-button">
         Delete
       </button>
+     </div>
+      
     </div>
   );
 }
