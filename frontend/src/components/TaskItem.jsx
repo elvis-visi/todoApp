@@ -26,7 +26,7 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
 
   if (editMode) {
     return (
-      <div className="task-item">
+      <div className={`task-item ${editMode ? 'edit-mode' : ''}`}>
         <input value={title} onChange={(e) => setTitle(e.target.value)} />
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         <select value={priority} onChange={(e) => setPriority(e.target.value)}>
