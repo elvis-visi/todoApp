@@ -57,12 +57,21 @@ const TaskListView = ({ tasks, setTasks, handleLogout }) => {
     });
     
 
-const updateTask = (updatedTask) => {
-  setTasks((prevTasks) =>
+const updateTask = async (task) => {
+  
+  try{
+    const updatedTask = await tasksService.updateTask(task.id, task)
+
+    setTasks((prevTasks) =>
     prevTasks.map((task) =>
       task.id === updatedTask.id ? updatedTask : task
     )
   );
+  }catch(error){
+    console.error('Error updating task:', error);
+    alert('Failed to update task.');
+  }
+  
 };
 
 const deleteTask = (taskId) => {
