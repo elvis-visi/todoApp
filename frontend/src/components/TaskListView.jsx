@@ -25,7 +25,7 @@ const groupTasksByDueDate = (tasks, todayAtMidnight) => {
 
 
 
-const TaskListView = ({ tasks, setTasks }) => {
+const TaskListView = ({ tasks, setTasks, handleLogout }) => {
 
   console.log('Rendering TaskListView', tasks);
 
@@ -107,6 +107,7 @@ const rescheduleFunc = (e) => {
         setSearchTerm={setSearchTerm}
         sortType={sortType}
         setSortType={setSortType}
+        handleLogout={handleLogout}
         />
   
        {overdueTasks.length > 0 && (

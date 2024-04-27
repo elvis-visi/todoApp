@@ -1,4 +1,4 @@
-export default function Menu({searchTerm, setSearchTerm}) {
+export default function Menu({searchTerm, setSearchTerm, handleLogout}) {
     return (
       <div className="menu">
         <input 
@@ -9,7 +9,7 @@ export default function Menu({searchTerm, setSearchTerm}) {
         />
         <ul className="menu-items">
           <li><a href="/stats">Stats</a></li>
-          <li><a href="/logout">Log Out</a></li>
+          <li><button onClick={handleLogout}>Log Out</button></li>
         </ul>
       </div>
     );

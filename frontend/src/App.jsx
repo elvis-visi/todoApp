@@ -22,6 +22,21 @@ useEffect(() => {
   }
 },[user]) // Dependency on `user` state
 
+useEffect(() => {
+  const loggedUserJson=
+  window.localStorage.getItem('loggedTaskappUser')
+  if(loggedUserJson) {
+    const user = JSON.parse(loggedUserJson)
+    setUser(user)
+    tasksService.setToken(user.token)
+  }
+},[])
+
+const handleLogout = () => {
+  window.localStorage.removeItem('loggedTaskappUser')
+  setUser(null)
+  tasksService.setToken(null)
+}
 
 
 const handleLogin = async (event) => {
@@ -33,6 +48,10 @@ const handleLogin = async (event) => {
       const user = await loginService.login({
         username,password
       })
+      //parse user object to JSON fist
+      window.localStorage.setItem(
+        'loggedTaskappUser', JSON.stringify(user)
+      )
       setUser(user)
       setUsername('')
       setPassword('')
@@ -69,6 +88,7 @@ const handleLogin = async (event) => {
     <TaskListView  
     tasks={tasks}
     setTasks={setTasks}
+    handleLogout={handleLogout}
     />
     }
 
