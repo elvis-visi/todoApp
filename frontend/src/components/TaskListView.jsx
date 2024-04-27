@@ -74,8 +74,16 @@ const updateTask = async (task) => {
   
 };
 
-const deleteTask = (taskId) => {
-  setTasks((prevTasks) => prevTasks.filter(task => task.id !== taskId));
+const deleteTask = async (taskId) => {
+
+  try{
+    const deletedTask = await tasksService.deleteTask(taskId)
+    setTasks((prevTasks) => prevTasks.filter(task => task.id !== taskId));
+  }catch(error){
+    console.error("Failed to delete task:", error);
+    alert("Failed to delete task!");
+  }
+
 };
   
    const addNewTask = async (newTask) => {
