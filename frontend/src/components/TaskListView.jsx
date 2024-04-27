@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "./Header";
 import TaskItem from "./TaskItem";
 import AddNewTaskButton from './AddNewTaskButton'
+import tasksService from '../services/tasks'
 
 
 const groupTasksByDueDate = (tasks, todayAtMidnight) => {
@@ -68,8 +69,14 @@ const deleteTask = (taskId) => {
   setTasks((prevTasks) => prevTasks.filter(task => task.id !== taskId));
 };
   
-   const addNewTask = (newTask) => {
-    setTasks(tasks.concat(newTask));
+   const addNewTask = async (newTask) => {
+    try{
+     const newTaskB = await tasksService.create(newTask)
+     setTasks(tasks.concat(newTaskB));
+    }catch(exception){
+      console.error("Failed to add new task:", exception);
+      alert("Failed to add task!");
+    }  
 }
 
     const todayAtMidnight = new Date();
