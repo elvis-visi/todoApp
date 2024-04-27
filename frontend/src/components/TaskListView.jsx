@@ -27,6 +27,8 @@ const groupTasksByDueDate = (tasks, todayAtMidnight) => {
 
 const TaskListView = ({ tasks, setTasks }) => {
 
+  console.log('Rendering TaskListView', tasks);
+
   const [searchTerm,setSearchTerm] = useState('')
   const [sortType, setSortType] = useState('none');  // 'none', 'priority', or 'dateAdded'
   const [reschedule, setReschedule] = useState();
