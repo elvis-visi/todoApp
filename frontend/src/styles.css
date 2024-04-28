@@ -1,6 +1,6 @@
 /* Global styles */
 html {
-  font-size: 16px; /* This is typically the default size in browsers */
+  font-size: 13px; /* This is typically the default size in browsers */
 }
 
 body, h1, h2, h3, p {
@@ -14,7 +14,7 @@ body, h1, h2, h3, p {
     flex-direction: column;
     padding: 1.5rem;
     max-width: 44rem; /* set the maximum width to 1200px */
-  margin: 0 auto; /* center the container horizontally */
+    margin: 0 auto; /* center the container horizontally */
   
   }
 
@@ -89,7 +89,7 @@ body, h1, h2, h3, p {
 .task-item {
   border: 0.0625rem solid #ddd;
   margin: 0.3125rem;
-  padding: 0.9375rem; /* 15px / 16px */
+  padding: 0.65rem; /* 15px / 16px */
   display: flex;
   align-items: baseline;
   background-color: #fff;
@@ -325,7 +325,7 @@ body, h1, h2, h3, p {
 @media (max-width: 768px) { /* Responsive adjustments */
   
   html {
-    font-size: 12px;
+    font-size: 10px;
   }
   
   .header {

@@ -56,7 +56,7 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
         onChange={handleTaskDone}
       />
       
-      <h3>{title}</h3>
+      {title}
       </div>
      
       

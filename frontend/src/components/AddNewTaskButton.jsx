@@ -70,10 +70,7 @@ function AddNewTaskButton({addNewTask, date}) {
             onChange={handleDescriptionChange}
       />
       
-      <div className="task-actions">
-        <button onClick={handleAddTaskClick}>Cancel</button>
-        <button onClick={ () => addNewTask(newTask())}  className="save">Add task</button>
-      </div>
+    
        <select value={priority}
        onChange={handleSelectChange}
        
@@ -89,6 +86,10 @@ function AddNewTaskButton({addNewTask, date}) {
           value={dueDate}
           onChange={handleDueDateChange}
        />
+         <div className="task-actions">
+        <button onClick={handleAddTaskClick}>Cancel</button>
+        <button onClick={ () => addNewTask(newTask())}  className="save">Add task</button>
+      </div>
     </div>
      )}
 
