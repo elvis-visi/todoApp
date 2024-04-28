@@ -97,8 +97,10 @@ const deleteTask = async (taskId) => {
     const overdueTasks = sortedTasks.filter(task => new Date(task.dueDate) < todayAtMidnight && !task.completed);
 const groupedUpcomingTasks = groupTasksByDueDate(sortedTasks.filter(task => !task.completed), todayAtMidnight);
 
-
-
+// Ensure today's date is always available for adding tasks
+if (!groupedUpcomingTasks[todayAtMidnight.toDateString()]) {
+  groupedUpcomingTasks[todayAtMidnight.toDateString()] = [];
+}
 
 
   
