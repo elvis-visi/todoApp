@@ -102,11 +102,14 @@ const groupedUpcomingTasks = groupTasksByDueDate(sortedTasks.filter(task => !tas
 
 
   
-const rescheduleFunc = (e) => {
-  const newDueDate = e.target.value;
-  setReschedule(newDueDate);
+const rescheduleFunc = async (e) => {
+  
+  try{
+    const newDueDate = e.target.value;
+    setReschedule(newDueDate);
+    await tasksService.rescheduleTask({newDueDate: newDueDate})
 
-  // Update the tasks state with the new due dates
+     // Update the tasks state with the new due dates
   setTasks((prevTasks) =>
   prevTasks.map((task) => {
     if (overdueTasks.find((ot) => ot.id === task.id)) {
@@ -115,6 +118,11 @@ const rescheduleFunc = (e) => {
     return task;
   })
 );
+
+  }catch(error) {
+    console.log("error", error)
+  }
+  
 };
 
 

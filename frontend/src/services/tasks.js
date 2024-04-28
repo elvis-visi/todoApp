@@ -44,4 +44,13 @@ const deleteTask = async (id) => {
       return response.data
 }
 
-export default {getAll, setToken, create, updateTask,deleteTask}
+const rescheduleTask = async (dueDate) => {
+    const config = {
+        headers: { Authorization: token },
+      }
+
+      const response = await axios.put(`${baseUrl}/reschedule`, dueDate, config)
+      return response.data
+}
+
+export default {getAll, setToken, create, updateTask,deleteTask, rescheduleTask}
