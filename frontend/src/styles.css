@@ -1,4 +1,8 @@
 /* Global styles */
+html {
+  font-size: 16px; /* This is typically the default size in browsers */
+}
+
 body, h1, h2, h3, p {
     margin: 0;
     padding: 0;
@@ -8,8 +12,8 @@ body, h1, h2, h3, p {
   .task-list-view {
     display: flex;
     flex-direction: column;
-    padding: 25px;
-    max-width: 700px; /* set the maximum width to 1200px */
+    padding: 1.5rem;
+    max-width: 44rem; /* set the maximum width to 1200px */
   margin: 0 auto; /* center the container horizontally */
   
   }
@@ -19,27 +23,27 @@ body, h1, h2, h3, p {
 .menu {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 0.625rem;
   background-color: #f7f7f7; /* light gray background */
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0.0625rem solid #ddd;
   box-sizing: border-box; /* Include padding in the width calculation */
 }
 
 .menu input[type="search"] {
   flex-grow: 1; /* Allow the search input to take up any remaining space */
-  padding: 10px;
-  margin-right: 20px; /* Spacing between search input and menu items */
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 0.625rem;
+  margin-right: 1.25rem; /* Spacing between search input and menu items */
+  font-size: 1rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.25rem;
 }
 
 .menu button {
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem;
   background-color: #607779; /* Theme color for buttons */
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   cursor: pointer;
 }
 
@@ -52,15 +56,15 @@ body, h1, h2, h3, p {
 .sort-by {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 0.625rem;
 }
 
 .sort-by select {
-  width: 150px;
-  padding: 10px;
-  font-size: 16px;
+  width: 12.5rem; 
+  padding: 0.625rem;
+  font-size: 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 /* Header component styles */
@@ -68,40 +72,40 @@ body, h1, h2, h3, p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #eee;
-  max-width: 700px; /* adjust the maximum width to your liking */
+  padding: 0.625rem;
+    background-color: #eee;
+    max-width: 43.75rem;
 }
 
 .header .menu {
-  margin-right: 20px;
+  margin-right: 1.25rem;
 }
 
 .header .sort-by {
-  margin-left: 20px;
+  margin-left: 1.25rem;
 }
   
  
 .task-item {
-  border: 1px solid #ddd;
-  margin: 5px;
-  padding: 15px;
+  border: 0.0625rem solid #ddd;
+  margin: 0.3125rem;
+  padding: 0.9375rem; /* 15px / 16px */
   display: flex;
   align-items: baseline;
   background-color: #fff;
   justify-content: space-between;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 }
  
   .task-checkbox-title {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
   }
 
   .task-checkbox-title input[type="checkbox"] {
-    margin-right: 10px;
+    margin-right: 0.625rem;
   }
 
   .task-checkbox-title h3 {
@@ -115,22 +119,22 @@ body, h1, h2, h3, p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
   
   
   
 .add-task-button {
-  background-color: #0097a7; 
-  color: #fff; 
+  background-color: #0097a7;
+  color: #fff;
   cursor: pointer;
   display: block;
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 0.625rem; 
+  margin-top: 0.625rem; 
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 0.25rem;
+  font-size: 1rem; 
   font-weight: bold;
 }
 
@@ -152,19 +156,20 @@ body, h1, h2, h3, p {
   .editDelete {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 0.625rem;
     align-items: center;
   }
 
-  .editDelete button {
-    width: 60px;
-    margin-right: 10px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  }
+ 
+.editDelete button {
+  width: 3.75rem; 
+  margin-right: 0.625rem; 
+  padding: 0.5rem 0.75rem; 
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
 
   .edit-button {
     background-color: #4CAF50; /* Green background for edit */
@@ -190,23 +195,23 @@ body, h1, h2, h3, p {
 }
 
 
-  .add-task-modal, .task-item.edit-mode {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    background-color: #f7f7f7;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.add-task-modal, .task-item.edit-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.625rem; 
+  background-color: #f7f7f7;
+  border: 0.0625rem solid #ddd; 
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
 
-  .add-task-modal, .task-item.edit-mode input, .add-task-modal textarea, .add-task-modal select {
-    margin-bottom: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+.add-task-modal, .task-item.edit-mode input, .add-task-modal textarea, .add-task-modal select {
+  margin-bottom: 0.625rem; /* 10px / 16px */
+  padding: 0.3125rem; /* 5px / 16px */
+  border: 0.0625rem solid #ccc; /* 1px / 16px */
+  border-radius: 0.25rem;
+}
 
   .overdue_section{
     position: relative;
@@ -214,11 +219,11 @@ body, h1, h2, h3, p {
 
  
   .task-list-headerOverdue input[type="date"] {
-    width: 100%; 
-    max-width: 200px; /* set a maximum width to prevent it from getting too wide */
-    padding: 10px;
-    font-size: 16px;
-  }
+    width: 100%;
+    max-width: 12.5rem; 
+    padding: 0.625rem; 
+    font-size: 1rem; 
+}
 
   .reschedule-btn {
     color: red; 
@@ -227,10 +232,10 @@ body, h1, h2, h3, p {
     padding: 0; 
     text-align: center; 
     display: inline; /* Display as inline element, like text */
-    font-size: 16px; /* Sets font size */
+    font-size: 1rem; /* Sets font size */
     cursor: pointer; 
     transition: color 0.3s; /* Smooth transition for color change */
-    margin-right: 15px;
+    margin-right: 0.9375rem;
 }
 
 .reschedule-btn:hover {
@@ -239,102 +244,100 @@ body, h1, h2, h3, p {
   
 
   
-  #reschedule-input {
-    position: absolute;
-    top: 0; /* Aligns the top of the input with the top of the overdue_section */
-    right: 0; /* Aligns the right of the input with the right of the overdue_section */
-    width: 200px; 
-    height: auto; /* Let it adjust based on content */
-    opacity: 0; 
-    z-index: -1; /* Put it behind other elements so it's not clickable */
-    pointer-events: none; /* Prevents clicking on the input */
-  }
-
-
-  .login-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
-    max-width: 700px; 
-    height: 50vh;
-    margin: 0 auto; /* Centering the login-view */
-    background-color: #ffffff; /* White background for the form area */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adding some shadow for depth */
-    border-radius: 8px; /* Rounded corners */
-  }
-
-  .login-view h2 {
-    color: #333; /* Dark grey color for the heading */
-    margin-bottom: 20px; /* Space below the header */
-  }
-
-  .login-view input {
-    width: 100%; 
-    padding: 10px;
-    margin-bottom: 15px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-  }
-
-  
-.login-view form {
-  width: 100%; /* Full width of the form */
-  max-width: 320px; /* Maximum width of the form */
-  margin: auto; /* Centers the form vertically and horizontally */
+#reschedule-input {
+  position: absolute;
+  top: 0; /* No change needed, position property does not need conversion */
+  right: 0; /* No change needed, position property does not need conversion */
+  width: 12.5rem; /* 200px / 16px */
+  height: auto; /* 'auto' remains unchanged */
+  opacity: 0; 
+  z-index: -1; 
+  pointer-events: none;
 }
 
-  .login-view button#login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #0056b3; /* Blue background */
-    color: #ffffff; /* White text */
-    font-size: 16px; /* Slightly larger font size */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  }
+.login-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5625rem; /* 25px / 16px */
+  max-width: 43.75rem; /* 700px / 16px */
+  height: 50vh; /* Viewport height unit, no need for rem conversion */
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1); /* 4px and 8px converted to rem */
+  border-radius: 0.5rem; /* 8px / 16px */
+}
 
-  .login-view button#login-button:hover {
-    background-color: #003580; /* Darker blue on hover */
-  }
+.login-view h2 {
+  color: #333;
+  margin-bottom: 1.25rem; /* 20px / 16px */
+}
 
-  .overdue_section  {
-    background-color: #f7f7f7;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
+.login-view input {
+  width: 100%; /* Percentage, remains unchanged */
+  padding: 0.625rem; /* 10px / 16px */
+  margin-bottom: 0.9375rem; /* 15px / 16px */
+  border: 0.0625rem solid #ccc; /* 1px / 16px */
+  border-radius: 0.25rem; /* 4px / 16px */
+}
 
+.login-view form {
+  width: 100%; /* Full width, no change needed */
+  max-width: 20rem; /* 320px / 16px */
+  margin: auto; /* Centering, no change needed */
+}
+
+.login-view button#login-button {
+  width: 100%;
+  padding: 0.625rem; /* 10px / 16px */
+  background-color: #0056b3;
+  color: #ffffff;
+  font-size: 1rem; /* 16px / 16px */
+  border: none;
+  border-radius: 0.25rem; /* 4px / 16px */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-view button#login-button:hover {
+  background-color: #003580;
+}
+
+.overdue_section {
+  background-color: #f7f7f7;
+  padding: 0.625rem; /* 10px / 16px */
+  border: 0.0625rem solid #ddd; /* 1px / 16px */
+  border-radius: 0.25rem; /* 4px / 16px */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.25rem; /* 20px / 16px */
+}
+
+.upcoming-tasks {
+  background-color: #f7f7f7;
+  padding: 0.625rem; /* 10px / 16px */
+  border: 0.0625rem solid #ddd; /* 1px / 16px */
+  border-radius: 0.25rem; /* 4px / 16px */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.25rem; /* 20px / 16px */
+}
+
+@media (max-width: 768px) { /* Responsive adjustments */
   
- 
-  .upcoming-tasks {
-    background-color: #f7f7f7;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  html {
+    font-size: 12px;
   }
-
   
-  
-
-@media (max-width: 768px) { /* adjust the breakpoint to your liking */
   .header {
-    flex-direction: column; /* stack the menu and sorting component vertically */
+      flex-direction: column;
   }
-  .task-item.edit-mode{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px; 
+  .task-item.edit-mode {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.625rem; /* 10px / 16px */
   }
 
   .task-item.edit-mode input, .task-item.edit-mode textarea, .task-item.edit-mode select {
-    margin-bottom: 10px; /* add some space between input fields */
+      margin-bottom: 0.625rem; /* 10px / 16px */
   }
 }
