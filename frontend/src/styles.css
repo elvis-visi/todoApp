@@ -176,6 +176,19 @@ body, h1, h2, h3, p {
   }
   
   
+/* Hide the button container by default */
+.task-item .editDelete {
+  
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Smooth transition for the opacity */
+}
+
+/* Show the button container when hovering over the task item */
+.task-item:hover .editDelete {
+
+  opacity: 1;
+}
+
 
   .task-item.edit-mode {
     background-color: #f7f7f7;
