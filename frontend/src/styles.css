@@ -11,6 +11,7 @@ body, h1, h2, h3, p {
     padding: 25px;
     max-width: 700px; /* set the maximum width to 1200px */
   margin: 0 auto; /* center the container horizontally */
+  
   }
 
   
@@ -21,35 +22,31 @@ body, h1, h2, h3, p {
   padding: 10px;
   background-color: #f7f7f7; /* light gray background */
   border-bottom: 1px solid #ddd;
+  box-sizing: border-box; /* Include padding in the width calculation */
 }
 
 .menu input[type="search"] {
-  width: 100px;
+  flex-grow: 1; /* Allow the search input to take up any remaining space */
   padding: 10px;
+  margin-right: 20px; /* Spacing between search input and menu items */
   font-size: 16px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-}
-.menu li {
-  margin-right: 20px;
+.menu button {
+  padding: 5px 10px;
+  background-color: #607779; /* Theme color for buttons */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.menu a {
-  text-decoration: none;
-  color: #337ab7; /* blue link color */
+.menu button:hover {
+  background-color: #007a83; /* Darker shade on hover */
 }
 
-.menu a:hover {
-  color: #23527c; /* darker blue link color on hover */
-}
 
 /* SortingComponent styles */
 .sort-by {
@@ -73,8 +70,7 @@ body, h1, h2, h3, p {
   align-items: center;
   padding: 10px;
   background-color: #eee;
-  max-width: 1200px; /* adjust the maximum width to your liking */
-  margin: 0 auto; /* center the header horizontally */
+  max-width: 700px; /* adjust the maximum width to your liking */
 }
 
 .header .menu {
@@ -227,15 +223,23 @@ body, h1, h2, h3, p {
   }
 
   .reschedule-btn {
-    background-color: #ffffff;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+    color: red; 
+    background: none;
+    border: none; 
+    padding: 0; 
+    text-align: center; 
+    display: inline; /* Display as inline element, like text */
+    font-size: 16px; /* Sets font size */
+    cursor: pointer; 
+    transition: color 0.3s; /* Smooth transition for color change */
+    margin-right: 15px;
+}
+
+.reschedule-btn:hover {
+    color: darkred; /* Darker red color on hover to provide feedback */
+}
   
-  .reschedule-btn:hover {
-    background-color: #f7f7f7;
-  }
+
   
   #reschedule-input {
     position: absolute;
@@ -319,6 +323,7 @@ body, h1, h2, h3, p {
     margin-bottom: 20px;
   }
 
+  
   
 
 @media (max-width: 768px) { /* adjust the breakpoint to your liking */
