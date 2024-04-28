@@ -38,13 +38,7 @@ const TaskListView = ({ tasks, setTasks, handleLogout }) => {
     task.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
 
-    const toggleTaskCompleted = (taskId) => {
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task.id === taskId ? { ...task, completed: true } : task
-        )
-      );
-    };
+
 
     // Optionally sort tasks by priority (1 is highest priority)
     const sortedTasks = filteredTasks.sort((a, b) => {
@@ -152,7 +146,6 @@ const rescheduleFunc = (e) => {
       <TaskItem
         key={task.id + index}
         task={task}
-        toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
         updateTask={updateTask}
         deleteTask={() => deleteTask(task.id)}
       />
@@ -176,7 +169,6 @@ const rescheduleFunc = (e) => {
           <TaskItem 
           key={task.id + index} 
           task={task} 
-          toggleTaskCompleted={() => toggleTaskCompleted(task.id)}
           updateTask={updateTask}
           deleteTask={() => deleteTask(task.id)}
           />)}

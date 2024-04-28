@@ -8,7 +8,7 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
   const [description, setDescription] = useState(task.description);
   const [priority, setPriority] = useState(task.priority);
   const [dueDate, setDueDate] = useState(task.dueDate);
- const {completed} = task
+ const [completed,setCompleted] = useState(task.completed)
   
  const handleSave = () => {
     const updatedTask = {
@@ -16,12 +16,18 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
       title,
       description,
       priority,
-      dueDate
+      dueDate,
+      completed
     };
     updateTask(updatedTask);
     setEditMode(false); // Exit edit mode after saving changes
   };
 
+  const handleTaskDone = () => {
+    const newCompletedStatus = !completed
+    setCompleted(newCompletedStatus)
+    updateTask({...task, completed: newCompletedStatus});
+  }
   
 
   if (editMode) {
@@ -46,8 +52,8 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
       <div className="task-checkbox-title">
       <input
         type="checkbox"
-        checked={task.completed}
-        onChange={toggleTaskCompleted}
+        checked={completed}
+        onChange={handleTaskDone}
       />
       
       <h3>{title}</h3>
