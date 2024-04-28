@@ -62,7 +62,7 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
       
     
      <div className="editDelete">
-     <button onClick={() => setEditMode(true)}>Edit</button>
+     <button onClick={() => setEditMode(true)} className="edit-button">Edit</button>
       <button onClick={deleteTask} className="delete-task-button">
         Delete
       </button>

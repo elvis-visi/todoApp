@@ -168,7 +168,7 @@ const rescheduleFunc = async (e) => {
    {Object.entries(groupedUpcomingTasks)
     .sort(([dateA],[dateB]) => new Date(dateA) - new Date(dateB))
     .map(([date, tasks]) => (
-        <section key={date}>
+        <section className="upcoming-tasks" key={date}>
           <h2>{ new Date(date).toDateString() === new Date().toDateString() ? 
             'Today' : date
         }</h2>
