@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import TaskListView from "./components/TaskListView";
 import Login from "./components/Login";
 import loginService from './services/login'
@@ -74,27 +74,27 @@ const handleLogin = async (event) => {
   };
 
   return (
-    <>
-    {user === null
-    ?
-    <Login 
-      username={username}
-      password={password}
-      handleUsernameChange={({ target }) => setUsername(target.value)}
-      handlePasswordChange={({ target }) => setPassword(target.value)}
-      handleSubmit={handleLogin}
-    />
-    :
-    <TaskListView  
-    tasks={tasks}
-    setTasks={setTasks}
-    handleLogout={handleLogout}
-    />
-    }
 
+<Router>
+      <Routes>
+        <Route path="/login" element={user ? <Navigate to="/" /> :
+         <Login 
+          username={username}
+          password={password}
+          handleUsernameChange={({ target }) => setUsername(target.value)}
+          handlePasswordChange={({ target }) => setPassword(target.value)}
+          handleSubmit={handleLogin}
+         />} 
+         />
+        <Route path="/" element={user ? <TaskListView 
+          tasks= {tasks}
+          setTasks= {setTasks}
+          handleLogout={handleLogout}
+        /> : <Navigate to="/login" />} />
+      </Routes>
+    </Router>
     
-     
-    </>
+   
   )
 }
 

@@ -7,7 +7,7 @@ const Login = ({
     password
   }) => {
     return (
-      <div>
+      <div className="login-view">
         <h2>Login</h2>
   
         <form onSubmit={handleSubmit}>
