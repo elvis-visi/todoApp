@@ -31,15 +31,21 @@ const handleCloseModal = () => {
     };
     updateTask(updatedTask);
     setEditMode(false); // Exit edit mode after saving changes
-    
+    setShowModal(false); // Ensure details are not shown after editing
   };
 
-  const handleTaskDone = () => {
+  const handleTaskDone = (e) => {
+    console.log("Checkbox clicked");
+    e.stopPropagation(); // Prevent event bubbling to the task item level
     const newCompletedStatus = !completed
     setCompleted(newCompletedStatus)
     updateTask({...task, completed: newCompletedStatus});
   }
   
+  const toggleEditMode = (e) => {
+    e.stopPropagation(); // Prevent opening details when clicking edit
+    setEditMode(!editMode);
+  };
 
   if (editMode) {
     return (
@@ -77,10 +83,10 @@ const handleCloseModal = () => {
             {title}
           </div>
           <div className="editDelete">
-            <button onClick={() => setEditMode(true)} className="edit-button">
+            <button onClick={toggleEditMode} className="edit-button">
               Edit
             </button>
-            <button onClick={deleteTask} className="delete-task-button">
+            <button onClick={(e) => { e.stopPropagation(); deleteTask(); }} className="delete-task-button">
               Delete
             </button>
           </div>
