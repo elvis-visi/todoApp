@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import TaskDetails from './TaskDetails';
 
 function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
  
@@ -9,6 +9,16 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
   const [priority, setPriority] = useState(task.priority);
   const [dueDate, setDueDate] = useState(task.dueDate);
  const [completed,setCompleted] = useState(task.completed)
+
+ const [showModal, setShowModal] = useState(false);
+
+ const handleTaskClick = () => {
+  setShowModal(true);
+};
+
+const handleCloseModal = () => {
+  setShowModal(false);
+};
   
  const handleSave = () => {
     const updatedTask = {
@@ -21,6 +31,7 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
     };
     updateTask(updatedTask);
     setEditMode(false); // Exit edit mode after saving changes
+    
   };
 
   const handleTaskDone = () => {
@@ -48,26 +59,33 @@ function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
   }
 
   return (
-    <div className="task-item">
-      <div className="task-checkbox-title">
-      <input
-        type="checkbox"
-        checked={completed}
-        onChange={handleTaskDone}
-      />
-      
-      {title}
-      </div>
-     
-      
-    
-     <div className="editDelete">
-     <button onClick={() => setEditMode(true)} className="edit-button">Edit</button>
-      <button onClick={deleteTask} className="delete-task-button">
-        Delete
-      </button>
-     </div>
-      
+    <div>
+      {showModal ? (
+          <>
+            <TaskDetails task={task} />
+            <button onClick={handleCloseModal}>Close</button>
+          </>
+             
+      ) : (
+        <div className="task-item" onClick={handleTaskClick}>
+          <div className="task-checkbox-title">
+            <input
+              type="checkbox"
+              checked={completed}
+              onChange={handleTaskDone}
+            />
+            {title}
+          </div>
+          <div className="editDelete">
+            <button onClick={() => setEditMode(true)} className="edit-button">
+              Edit
+            </button>
+            <button onClick={deleteTask} className="delete-task-button">
+              Delete
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
