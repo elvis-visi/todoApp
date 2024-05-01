@@ -236,6 +236,11 @@ body, h1, h2, h3, p {
   box-sizing: border-box; 
 }
 
+.task-item.edit-mode textarea {
+    min-height: 6.25rem; /* Initial minimum height */
+    resize: vertical; /* Allow the user to resize vertically */
+}
+
 
 .save-cancel-buttons {
   display: flex;
