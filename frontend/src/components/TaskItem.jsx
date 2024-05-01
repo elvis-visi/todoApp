@@ -60,8 +60,12 @@ const handleCloseModal = () => {
           <option value="3">3</option>
         </select>
         <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
-        <button onClick={handleSave}>Save</button>
-        <button onClick={() => setEditMode(false)}>Cancel</button>
+        <div className="save-cancel-buttons">
+          <button onClick={handleSave} className="saveButton">Save</button>
+          <button onClick={() => setEditMode(false)} className="editButton">Cancel</button>
+        </div>
+       
+     
       </div>
     );
   }

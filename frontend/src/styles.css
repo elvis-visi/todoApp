@@ -232,6 +232,47 @@ body, h1, h2, h3, p {
   box-sizing: border-box; 
 }
 
+
+.save-cancel-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0.625rem;
+  gap: 0.5rem;
+}
+
+.save-cancel-buttons button {
+  flex-grow: 1;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.save-cancel-buttons .saveButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-cancel-buttons .saveButton:hover, .save-cancel-buttons .saveButton:focus {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.save-cancel-buttons .editButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.save-cancel-buttons .editButton:hover, .save-cancel-buttons .editButton:focus {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+}
+
+
 .add-task-modal button,
 .task-item.edit-mode button
 {
