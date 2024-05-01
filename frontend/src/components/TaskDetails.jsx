@@ -1,7 +1,7 @@
 import React from 'react';
 import TaskActions from './TaskActions';
 
-const TaskDetails = ({ task,toggleEditMode, deleteTask }) => {
+const TaskDetails = ({ task,toggleEditMode, deleteTask, handleCloseModal }) => {
   return (
     <div className="task-details">
       <h2>Task Details</h2>
@@ -21,10 +21,14 @@ const TaskDetails = ({ task,toggleEditMode, deleteTask }) => {
         <label>Priority:</label>
         <span>{task.priority}</span>
       </div>
+      <div className='edit-delete-close'>
       <TaskActions 
             toggleEditMode = {toggleEditMode} 
             deleteTask = {deleteTask}
           />
+      <button onClick={handleCloseModal} className='closeButton'>Close</button>    
+      </div>
+     
     </div>
   );
 };

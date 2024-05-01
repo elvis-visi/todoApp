@@ -78,8 +78,9 @@ const handleCloseModal = () => {
             task={task} 
             toggleEditMode = {toggleEditMode} 
             deleteTask = {deleteTask}
+            handleCloseModal={handleCloseModal}
             />
-            <button onClick={handleCloseModal}>Close</button>
+            
           </>
              
       ) : (
