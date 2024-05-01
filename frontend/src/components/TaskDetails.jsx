@@ -1,6 +1,7 @@
 import React from 'react';
+import TaskActions from './TaskActions';
 
-const TaskDetails = ({ task }) => {
+const TaskDetails = ({ task,toggleEditMode, deleteTask }) => {
   return (
     <div className="task-details">
       <h2>Task Details</h2>
@@ -20,6 +21,10 @@ const TaskDetails = ({ task }) => {
         <label>Priority:</label>
         <span>{task.priority}</span>
       </div>
+      <TaskActions 
+            toggleEditMode = {toggleEditMode} 
+            deleteTask = {deleteTask}
+          />
     </div>
   );
 };

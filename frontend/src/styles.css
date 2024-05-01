@@ -162,7 +162,7 @@ body, h1, h2, h3, p {
 
  
 .editDelete button {
-  width: 3.75rem; 
+  width: 4rem; 
   margin-right: 0.625rem; 
   padding: 0.5rem 0.75rem; 
   border: none;
@@ -192,6 +192,10 @@ body, h1, h2, h3, p {
 .task-item:hover .editDelete {
   opacity: 1;
   opacity: 1;
+}
+
+.task-details .editDelete {
+  justify-content:left;
 }
 
 
@@ -363,6 +367,9 @@ body, h1, h2, h3, p {
     font-size: 10px;
   }
   
+  .editDelete button {
+    width: 5rem;
+  }
   
   .header {
       flex-direction: column;

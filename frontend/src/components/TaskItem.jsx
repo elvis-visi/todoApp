@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TaskDetails from './TaskDetails';
+import TaskActions from "./TaskActions";
 
 function TaskItem({ task, toggleTaskCompleted, updateTask,deleteTask  }) {
  
@@ -69,7 +70,11 @@ const handleCloseModal = () => {
     <div>
       {showModal ? (
           <>
-            <TaskDetails task={task} />
+            <TaskDetails 
+            task={task} 
+            toggleEditMode = {toggleEditMode} 
+            deleteTask = {deleteTask}
+            />
             <button onClick={handleCloseModal}>Close</button>
           </>
              
@@ -83,14 +88,10 @@ const handleCloseModal = () => {
             />
             {title}
           </div>
-          <div className="editDelete">
-            <button onClick={toggleEditMode} className="edit-button">
-              Edit
-            </button>
-            <button onClick={(e) => { e.stopPropagation(); deleteTask(); }} className="delete-task-button">
-              Delete
-            </button>
-          </div>
+          <TaskActions 
+            toggleEditMode = {toggleEditMode} 
+            deleteTask = {deleteTask}
+          />
         </div>
       )}
     </div>
