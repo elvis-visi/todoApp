@@ -37,6 +37,7 @@ const handleCloseModal = () => {
   const handleTaskDone = (e) => {
     console.log("Checkbox clicked");
     e.stopPropagation(); // Prevent event bubbling to the task item level
+    setShowModal(false);
     const newCompletedStatus = !completed
     setCompleted(newCompletedStatus)
     updateTask({...task, completed: newCompletedStatus});
