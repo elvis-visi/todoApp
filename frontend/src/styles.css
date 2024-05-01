@@ -198,24 +198,79 @@ body, h1, h2, h3, p {
   justify-content:left;
 }
 
+.task-actions button {
+  margin-right: 0.5rem;
+}
 
-.add-task-modal, .task-item.edit-mode {
+.add-task-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.625rem; 
-  background-color: #f7f7f7;
+  padding: 1.25rem; 
+  background-color: #fff; 
   border: 0.0625rem solid #ddd; 
-  border-radius: 0.25rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem; /* rounded corners */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); 
+  max-width: 37.5rem; 
+  margin: 1.25rem auto; 
+  transition: transform 0.3s ease-out, opacity 0.3s ease;
 }
 
-.add-task-modal, .task-item.edit-mode input, .add-task-modal textarea, .add-task-modal select {
-  margin-bottom: 0.625rem; /* 10px / 16px */
-  padding: 0.3125rem; /* 5px / 16px */
-  border: 0.0625rem solid #ccc; /* 1px / 16px */
+.add-task-modal input,
+.add-task-modal textarea,
+.add-task-modal select {
+  width: 100%; 
+  padding: 0.625rem; 
+  margin-bottom: 0.625rem; 
+  border: 0.0625rem solid #ccc; 
   border-radius: 0.25rem;
+  font-size: 1rem;
+  box-sizing: border-box; 
 }
+
+.add-task-modal button {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem; 
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+.add-task-modal .save {
+  background-color: #4CAF50; 
+  color: white; 
+}
+
+.add-task-modal .save:hover {
+  background-color: #45a049;
+}
+
+.add-task-modal .cancel {
+  background-color: #f44336; 
+  color: white;
+}
+
+.add-task-modal .cancel:hover {
+  background-color: #d32f2f; 
+}
+
+/* Adding animation for modal appearance */
+@keyframes slideIn {
+  from {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.add-task-modal {
+  animation: slideIn 0.3s ease-out forwards; /* apply animation */
+}
+
 
   .overdue_section{
     position: relative;
@@ -359,6 +414,17 @@ body, h1, h2, h3, p {
   line-height: 1.6;
 }
 
+.task-item.edit-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.625rem; /* 10px / 16px */
+}
+
+.task-item.edit-mode input, .task-item.edit-mode textarea, .task-item.edit-mode select {
+  margin-bottom: 0.625rem; /* 10px / 16px */
+}
+
 
 
 @media (max-width: 768px) { /* Responsive adjustments */
@@ -374,13 +440,5 @@ body, h1, h2, h3, p {
   .header {
       flex-direction: column;
   }
-  .task-item.edit-mode {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 0.625rem; /* 10px / 16px */
-  }
-
-  .task-item.edit-mode input, .task-item.edit-mode textarea, .task-item.edit-mode select {
-      margin-bottom: 0.625rem; /* 10px / 16px */
-  }
+  
 }

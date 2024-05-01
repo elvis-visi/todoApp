@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 function AddNewTaskButton({addNewTask, date}) {
     
   const [isVisible,setVisibility] = useState(false);
-  const [priority, setPriority] = useState("3");
+  const [priority, setPriority] = useState("");
 
   const [title,setTitle] = useState('')
   const [description,setDescription] =useState('')
@@ -19,6 +19,10 @@ function AddNewTaskButton({addNewTask, date}) {
   const [dueDate, setDueDate] = useState(formatDate(date));
   const handleAddTaskClick = () => {
     setVisibility(!isVisible)
+     // Reset priority to an empty string each time the modal is opened
+     if (!isVisible) {
+      setPriority("");
+    }
   }
 
   const handleSelectChange = (event) => {
@@ -38,13 +42,14 @@ function AddNewTaskButton({addNewTask, date}) {
   };
 
   const newTask = () => {
+    const effectivePriority = priority || "3";
     return {
       id: uuidv4(),
       title: title,
       description: description,
       dueDate: new Date(dueDate).toISOString(), // Adjust based on user input if needed
       dateAdded: new Date().toISOString(),
-      priority: priority,
+      priority: effectivePriority,
       completed: false,
       user: {
         username: "visi",
@@ -75,7 +80,7 @@ function AddNewTaskButton({addNewTask, date}) {
        onChange={handleSelectChange}
        
        >
-        <option value="">Priority</option>
+        <option value="" disabled>Select Priority</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
