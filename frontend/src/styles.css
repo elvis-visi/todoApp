@@ -7,7 +7,6 @@ body, h1, h2, h3, p {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    padding-top: 1.5rem;
   }
 
   .task-list-view {
@@ -20,7 +19,7 @@ body, h1, h2, h3, p {
   }
 
   .task-list-view h2 {
-    padding-bottom: 1rem;
+   
   }
   
   /* Menu component styles */
@@ -71,31 +70,50 @@ body, h1, h2, h3, p {
   border-radius: 0.25rem;
 }
 
+
+
 /* Header component styles */
 .header {
+  display: flex;
+  justify-content: space-between;
   position: fixed;
   top:0;
   width: 100%; 
   z-index: 1000;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0.625rem;
     background-color: #eee;
+    margin: 0 auto;
     max-width: 44rem;
     box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0,0,0,0.12);
 }
 
-.header .menu {
-  margin-right: 1.25rem;
+.search-input {
+  flex-grow: 2;  /* Allows input to grow but limited */
+  margin-right: 0.625rem; /* Spacing between elements */
+  max-width: 50%; /* Maximum width limit */
 }
 
-.header .sort-by {
-  margin-left: 1.25rem;
+.sort-select {
+  flex-grow: 1;  /* Allows selection to grow but limited */
+  margin-right: 0.625rem; /* Consistent spacing */
+  max-width: 20%; /* Maximum width limit */
 }
-  
- 
+
+.logout-button {
+  padding: 0.3125rem 0.625rem;
+  background-color: #607779;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #007a83;
+}
+
 .task-item {
   border: 0.0625rem solid #ddd;
   margin: 0.3125rem;
@@ -516,12 +534,12 @@ body, h1, h2, h3, p {
     width: 5rem;
   }
   
-  .header {
-      flex-direction: column;
+  body{
+    margin-top: 1rem;
   }
 
-  body{
-    margin-top: 3.9rem;
+  .header{
+    width: 92%;
   }
   
 }
