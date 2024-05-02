@@ -141,7 +141,7 @@ const rescheduleFunc = async (e) => {
        {overdueTasks.length > 0 && (
   <section className="overdue_section">
     <div className="task-list-headerOverdue">
-      <h2>Overdue</h2>
+      <h3>Overdue</h3>
       <button className="reschedule-btn" onClick={() => document.getElementById('reschedule-input').showPicker()}>
         Reschedule
       </button>
@@ -169,9 +169,9 @@ const rescheduleFunc = async (e) => {
     .sort(([dateA],[dateB]) => new Date(dateA) - new Date(dateB))
     .map(([date, tasks]) => (
         <section className="upcoming-tasks" key={date}>
-          <h2>{ new Date(date).toDateString() === new Date().toDateString() ? 
+          <h3>{ new Date(date).toDateString() === new Date().toDateString() ? 
             'Today' : date
-        }</h2>
+        }</h3>
 
           
 

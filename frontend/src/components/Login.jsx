@@ -9,7 +9,7 @@ const Login = ({
     return (
       <div className="login-view">
         <h2>Login</h2>
-  
+        <p>Demo credentials: bob - bob12</p>
         <form onSubmit={handleSubmit}>
           <div>
              username
