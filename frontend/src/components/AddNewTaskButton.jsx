@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid'; 
+ 
 
 function AddNewTaskButton({addNewTask, date}) {
     
@@ -44,17 +44,12 @@ function AddNewTaskButton({addNewTask, date}) {
   const newTask = () => {
     const effectivePriority = priority || "3";
     return {
-      id: uuidv4(),
       title: title,
       description: description,
       dueDate: new Date(dueDate).toISOString(), // Adjust based on user input if needed
       dateAdded: new Date().toISOString(),
       priority: effectivePriority,
       completed: false,
-      user: {
-        username: "visi",
-        id: "some-fixed-or-dynamic-user-id"
-      }
     };
   }
   return (
