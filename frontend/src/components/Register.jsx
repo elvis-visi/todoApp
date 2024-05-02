@@ -14,7 +14,7 @@ const Register = ({
             <h2>Register</h2>
             <form onSubmit={handleSubmit}>
                 <div className="auth-input-group">
-                    <label htmlFor='name'>Name</label>
+                   
                     <input
                         id='name'
                         type="text"
@@ -24,7 +24,7 @@ const Register = ({
                     />
                 </div>
                 <div className="auth-input-group">
-                    <label htmlFor='username'>Username</label>
+                  
                     <input
                         id='username'
                         type="text"
@@ -34,7 +34,7 @@ const Register = ({
                     />
                 </div>
                 <div className="auth-input-group">
-                    <label htmlFor='password'>Password</label>
+                    
                     <input
                         id='password'
                         type="password"

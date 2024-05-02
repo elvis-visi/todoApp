@@ -14,20 +14,21 @@ const Login = ({
         <p>Demo credentials: bob - bob12</p>
         <form onSubmit={handleSubmit}>
           <div>
-             username
             <input
               id='username'
               value={username}
               onChange={handleUsernameChange}
+              placeholder="Enter your username"
             />
           </div>
           <div>
-             password
+        
             <input
               id='password'
               type="password"
               value={password}
               onChange={handlePasswordChange}
+              placeholder="Enter your password"
             />
           </div>
           <button id="login-button" type="submit">login</button>
