@@ -382,8 +382,9 @@ body, h1, h2, h3, p {
   justify-content: center;
   padding: 1.5625rem; /* 25px / 16px */
   max-width: 43.75rem; /* 700px / 16px */
-  height: 50vh; /* Viewport height unit, no need for rem conversion */
+  height: 30vh; /* Viewport height unit, no need for rem conversion */
   margin: 0 auto;
+  margin-top: 8rem;
   background-color: #ffffff;
   box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1); /* 4px and 8px converted to rem */
   border-radius: 0.5rem; /* 8px / 16px */
@@ -394,28 +395,27 @@ body, h1, h2, h3, p {
   margin-bottom: 1.25rem; /* 20px / 16px */
 }
 
-.login-view input {
-  width: 100%; /* Percentage, remains unchanged */
-  padding: 0.625rem; /* 10px / 16px */
-  margin-bottom: 0.9375rem; /* 15px / 16px */
-  border: 0.0625rem solid #ccc; /* 1px / 16px */
-  border-radius: 0.25rem; /* 4px / 16px */
-}
-
 .login-view form {
   width: 100%; /* Full width, no change needed */
   max-width: 20rem; /* 320px / 16px */
+  display: flex;
+  flex-direction: column;
   margin: auto; /* Centering, no change needed */
 }
 
-.login-view button#login-button {
-  width: 100%;
+.login-view input, .login-view button#login-button {
+  width: 100%; /* Ensures all inputs and the button are the same width */
   padding: 0.625rem; /* 10px / 16px */
+  margin-bottom: 0.9375rem; /* 15px / 16px */
+  font-size: 1rem; /* 16px / 16px */
+  border: 0.0625rem solid #ccc; /* 1px / 16px */
+  border-radius: 0.25rem;
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
+.login-view button#login-button {
   background-color: #0056b3;
   color: #ffffff;
-  font-size: 1rem; /* 16px / 16px */
-  border: none;
-  border-radius: 0.25rem; /* 4px / 16px */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
