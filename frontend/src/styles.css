@@ -442,7 +442,9 @@ body, h1, h2, h3, p {
   box-sizing: border-box; /* Includes padding and border in the element's total width and height */
 }
 
-.login-view button#login-button {
+.login-view button#login-button,
+.registration-button
+{
   background-color: #0056b3;
   color: #ffffff;
   cursor: pointer;
@@ -452,6 +454,66 @@ body, h1, h2, h3, p {
 .login-view button#login-button:hover {
   background-color: #003580;
 }
+
+.auth-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5625rem; /* 25px */
+  max-width: 43.75rem; /* 700px */
+  margin: 5rem auto;
+  background-color: #f6f8fa;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.auth-view h2 {
+  color: #333;
+  margin-bottom: 1.25rem;
+}
+
+.auth-input-group {
+  margin-bottom: 1rem;
+}
+
+.auth-input-group input {
+  width: 100%;
+  padding: 0.625rem;
+  margin-bottom: 0.9375rem;
+  font-size: 1rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 0.625rem;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1.6rem;
+}
+
+.auth-button:hover {
+  background-color: #003580;
+}
+
+.auth-link {
+  color: #0056b3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+  color: #003580;
+}
+
 
 .overdue_section {
   background-color: #f7f7f7;
@@ -469,6 +531,7 @@ body, h1, h2, h3, p {
   border-radius: 0.25rem; /* 4px / 16px */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   margin-bottom: 1.25rem; /* 20px / 16px */
+  margin-top: 0.5rem;
 }
 
 
