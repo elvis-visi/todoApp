@@ -4,7 +4,6 @@ import TaskActions from './TaskActions';
 const TaskDetails = ({ task,toggleEditMode, deleteTask, handleCloseModal }) => {
   return (
     <div className="task-details">
-      <h2>Task Details</h2>
       <div className="task-detail-item">
         <label>Title:</label>
         <span>{task.title}</span>
