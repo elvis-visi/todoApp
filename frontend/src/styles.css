@@ -70,7 +70,10 @@ body, h1, h2, h3, p {
   border-radius: 0.25rem;
 }
 
-
+.errorMessageLogin{
+  color:red;
+  font-size: 1.5rem;
+}
 
 /* Header component styles */
 .header {
@@ -81,7 +84,7 @@ body, h1, h2, h3, p {
   width: 100%; 
   z-index: 1000;
   align-items: center;
-  padding: 0.625rem;
+  padding: 0.4rem;
     background-color: #eee;
     margin: 0 auto;
     max-width: 44rem;
@@ -528,7 +531,7 @@ body, h1, h2, h3, p {
   border-radius: 0.25rem; /* 4px / 16px */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   margin-bottom: 1.25rem; /* 20px / 16px */
-  margin-top: 1rem;
+  margin-top: 0.4rem;
 }
 
 

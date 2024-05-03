@@ -1,17 +1,19 @@
 
 import { Link } from 'react-router-dom';
-
+import Notification from './Notification';
 const Login = ({
     handleSubmit,
     handleUsernameChange,
     handlePasswordChange,
     username,
-    password
+    password,
+    errorMessage
   }) => {
     return (
       <div className="login-view">
         <h2>Sign in</h2>
         <p>Demo credentials: bob - bob12</p>
+        <Notification message={errorMessage} />
         <form onSubmit={handleSubmit}>
           <div>
             <input

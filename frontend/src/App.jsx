@@ -14,6 +14,7 @@ const [user,setUser] = useState(null)
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [name, setName] = useState('');
+const [errorMessage, setErrorMessage] = useState(null)
 
 console.log('Rendering App');
 
@@ -43,28 +44,29 @@ const handleLogout = () => {
 
 
 const handleLogin = async (event) => {
-    event.preventDefault()
-    console.log('login event ',event)
-    console.log('logging in with', username, password)
+  event.preventDefault()
+  console.log('login event ', event)
+  console.log('logging in with', username, password)
 
-    try{
-      const user = await loginService.login({
-        username,password
-      })
-      //parse user object to JSON fist
-      window.localStorage.setItem(
-        'loggedTaskappUser', JSON.stringify(user)
-      )
-      setUser(user)
-      setUsername('')
-      setPassword('')
-
-    }catch(exception){
-      console.log(exception)
-      setUser(null)
-    }
-
+  try {
+    const user = await loginService.login({
+      username, password
+    })
+    window.localStorage.setItem(
+      'loggedTaskappUser', JSON.stringify(user)
+    )
+    setUser(user)
+    setUsername('')
+    setPassword('')
+    setErrorMessage(null)
+  } catch (exception) {
+    console.log(exception.response.data.error)
+    setErrorMessage(exception.response.data.error)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 3000) // clear the error message after 3 seconds
   }
+}
 
   const handleLoginDirect = async (username, password) => {
     try {
@@ -74,9 +76,13 @@ const handleLogin = async (event) => {
         setUser(user);
         setUsername('');
         setPassword('');
+        setErrorMessage(null)
     } catch (exception) {
-        console.error('Failed to login after registration', exception);
-        setUser(null);
+      console.log(exception.response.data.error)
+      setErrorMessage(exception.response.data.error)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 3000) // clear the error message after 3 seconds
     }
 };
 
@@ -128,6 +134,7 @@ const handleLogin = async (event) => {
           handleUsernameChange={({ target }) => setUsername(target.value)}
           handlePasswordChange={({ target }) => setPassword(target.value)}
           handleSubmit={handleLogin}
+          errorMessage={errorMessage}
          />} 
          />
         <Route path="/" element={user ? <TaskListView 
