@@ -64,7 +64,7 @@ const handleLogin = async (event) => {
     setErrorMessage(exception.response.data.error)
     setTimeout(() => {
       setErrorMessage(null)
-    }, 3000) // clear the error message after 3 seconds
+    }, 1200) // clear the error message after 3 seconds
   }
 }
 
@@ -82,7 +82,7 @@ const handleLogin = async (event) => {
       setErrorMessage(exception.response.data.error)
       setTimeout(() => {
         setErrorMessage(null)
-      }, 3000) // clear the error message after 3 seconds
+      }, 1200) // clear the error message after 3 seconds
     }
 };
 
@@ -95,8 +95,14 @@ const handleLogin = async (event) => {
             password
         });
         handleLoginDirect(username, password);
+        setErrorMessage(null)
     } catch (exception) {
         console.error('Failed to register', exception);
+        console.error('Failed to register', exception.response.data.error)
+        setErrorMessage(exception.response.data.error)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 1200) // clear the error message after 3 seconds
     }
 };
 
@@ -125,6 +131,7 @@ const handleLogin = async (event) => {
                         handleUsernameChange={({ target }) => setUsername(target.value)}
                         handlePasswordChange={({ target }) => setPassword(target.value)}
                         handleSubmit={handleRegister}
+                        errorMessage={errorMessage}
                     />
                 }/>
         <Route path="/login" element={user ? <Navigate to="/" /> :

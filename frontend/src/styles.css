@@ -70,9 +70,10 @@ body, h1, h2, h3, p {
   border-radius: 0.25rem;
 }
 
-.errorMessageLogin{
+.errorMessage{
   color:red;
   font-size: 1.5rem;
+
 }
 
 /* Header component styles */
@@ -420,7 +421,7 @@ body, h1, h2, h3, p {
   justify-content: center;
   padding: 1.5625rem; /* 25px / 16px */
   max-width: 43.75rem; /* 700px / 16px */
-  height: 30vh; /* Viewport height unit, no need for rem conversion */
+  height: 20rem; /* Viewport height unit, no need for rem conversion */
   margin: 0 auto;
   margin-top: 8rem;
   background-color: #f6f8fa;

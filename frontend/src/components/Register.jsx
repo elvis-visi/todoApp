@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import Notification from './Notification';
 const Register = ({
     handleSubmit,
     handleUsernameChange,
@@ -7,11 +7,13 @@ const Register = ({
     handleNameChange,
     username,
     password,
-    name
+    name,
+    errorMessage
 }) => {
     return (
         <div className="auth-view">
             <h2>Register</h2>
+            <Notification message={errorMessage} />
             <form onSubmit={handleSubmit}>
                 <div className="auth-input-group">
                    
