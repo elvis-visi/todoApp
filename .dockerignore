@@ -29,3 +29,8 @@ frontend\**\*.sln
 frontend\**\*.sw?
 fly.toml
 
+node_modules
+npm-debug.log
+frontend/node_modules
+backend/node_modules
+dist

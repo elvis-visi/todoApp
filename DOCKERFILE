@@ -2,24 +2,21 @@
 FROM node:14
 
 # Set the working directory for backend
-WORKDIR /app/backend
+WORKDIR /app
 
 # Copy backend package files and install dependencies
-COPY backend/package*.json ./
-RUN npm install
+COPY backend/package*.json ./backend/
+RUN cd backend && npm install
 
-# Copy frontend package files and build frontend
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm install
-RUN npm run build
+# Copy frontend package files and install dependencies
+COPY frontend/package*.json ./frontend/
+RUN cd frontend && npm install
 
 # Copy the rest of the application code
-WORKDIR /app
 COPY . .
 
-# Move frontend build to backend public directory
-RUN cp -r /app/frontend/dist /app/backend/public
+# Build the frontend and move it to the backend
+RUN cd backend && npm run build:ui
 
 # Set the working directory back to backend
 WORKDIR /app/backend
